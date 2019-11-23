@@ -8,8 +8,9 @@ class RootScreen extends Component{
   render(){
     return (
       <SafeAreaView style={styles.container} >
-        <Text style={{fontSize:40, textAlign:'center'}} >  RYPE </Text>
-          <View style={{flexDirection:'row', justifyContent:'space-around', marginBottom:20}} >
+        <Text style={{fontSize:40, textAlign:'center'}} >  LOGO HERE </Text>
+        <View style={{marginTop:80, justifyContent:'center', alignItems:'center'}} >
+          <View style={{flexDirection:'row', justifyContent:'center', marginBottom:20}} >
             <Button 
                 onPress={ () => Actions.Login()} 
                 color='white' 
@@ -25,6 +26,8 @@ class RootScreen extends Component{
                 SIGNUP 
             </Button>
           </View>
+          <Text style={{textAlign:'center', color:'#2954e3', fontStyle:'italic', fontWeight:'bold'}} > Continue as Visitor </Text>
+        </View>
       </SafeAreaView>
     );
   }
@@ -34,12 +37,13 @@ class RootScreen extends Component{
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    justifyContent:'space-between'
+    justifyContent:'center'
   },
   buttonStyle:{
-      backgroundColor:'blue',
+      backgroundColor:'#188a32',
       color:'white',
       padding:10,
+      marginRight:10
   }
 });
 

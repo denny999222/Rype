@@ -25,26 +25,26 @@ class RouterComponent extends Component {
             <Router>
                 <Scene key='root' >  
                     <Scene key='RootScreen' initial={true} component={RootScreen} hideNavBar />
-                    <Scene key='Login' component={Login} />
-                    <Scene key='SignUp' component={SignUp} />
+                    <Scene key='Login' component={Login} hideNavBar />
+                    <Scene key='SignUp' component={SignUp} hideNavBar />
 
-                    <Scene key='customer' >
+                    <Scene key='customer' hideNavBar>
                         <Scene key='CustomerHome' initial={true} component={CustomerHome} hideNavBar />
 
                     </Scene>
-                    <Scene key='manager' >
+                    <Scene key='manager' hideNavBar>
                         <Scene key='ManagerHome' initial={true} component={ManagerHome} hideNavBar />
 
                     </Scene>
-                    <Scene key='cook' >
+                    <Scene key='cook' hideNavBar>
                         <Scene key='CookHome' initial={true} component={CookHome} hideNavBar />
 
                     </Scene>
-                    <Scene key='delivery' >
+                    <Scene key='delivery' hideNavBar>
                         <Scene key='DeliveryHome' initial={true} component={DeliveryHome} hideNavBar />
 
                     </Scene>
-                    <Scene key='salesperson' >
+                    <Scene key='salesperson' hideNavBar>
                         <Scene key='SalespersonHome' initial={true} component={SalespersonHome} hideNavBar />
 
                     </Scene>
