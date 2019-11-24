@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Actions} from 'react-native-router-flux';
 import Button from 'react-native-button';
-import { StyleSheet, SafeAreaView, Text, View} from 'react-native';
+import { StyleSheet, SafeAreaView, Text, View, FlatList} from 'react-native';
+
 
 class CustomerHome extends Component{
 

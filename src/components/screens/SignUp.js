@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import { StyleSheet, SafeAreaView, Text, View, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
 import { TextField } from 'react-native-material-textfield';
-import RNPickerSelect from 'react-native-picker-select';
 import Button from 'react-native-button';
+import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {Header} from '../common/components';
 import firebase from 'firebase';
@@ -29,8 +29,13 @@ class SignUp extends Component{
                 await firebase.database().ref(`/users/${res.user.uid}`) 
                 .set({
                     email: email,
-                    accountType: accountType
+                    accountType: accountType,
+                    userID: res.user.id
                 }); 
+                this.props.dispatch( {
+                    type: 'SIGNUP_SUCCESS', 
+                    payload: {email, accountType} 
+                } ); // saves the users data to store in Auth store
 
                 switch (accountType) {
                     case 'manager':
@@ -150,4 +155,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SignUp;
+export default connect()(SignUp);

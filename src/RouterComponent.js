@@ -9,6 +9,7 @@ import ManagerHome from './components/screens/manager/ManagerHome';
 import DeliveryHome from './components/screens/delivery/DeliveryHome';
 import CookHome from './components/screens/cook/CookHome';
 import SalespersonHome from './components/screens/salesperson/SalespersonHome';
+import {TabIcon} from './components/common/components';
 import firebase from 'firebase';
 import {connect} from 'react-redux';
 
@@ -24,7 +25,7 @@ class RouterComponent extends Component {
         return (
             <Router>
                 <Scene key='root' >  
-                    <Scene key='RootScreen' initial={true} component={RootScreen} hideNavBar />
+                    <Scene key='RootScreen' initial component={RootScreen} hideNavBar />
                     <Scene key='Login' component={Login} hideNavBar />
                     <Scene key='SignUp' component={SignUp} hideNavBar />
 
@@ -32,9 +33,38 @@ class RouterComponent extends Component {
                         <Scene key='CustomerHome' initial={true} component={CustomerHome} hideNavBar />
 
                     </Scene>
-                    <Scene key='manager' hideNavBar>
-                        <Scene key='ManagerHome' initial={true} component={ManagerHome} hideNavBar />
-
+                    <Scene key='manager' activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
+                        <Scene 
+                            key='ManagerHome' 
+                            initial={true} 
+                            component={ManagerHome} 
+                            hideNavBar 
+                            keyColor='black'
+                            iconName='utensils'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon}
+                        />
+                        <Scene 
+                            key='Bidding' 
+                            component={ManagerHome} 
+                            hideNavBar 
+                            keyColor='black'
+                            iconName='file-invoice-dollar'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon}
+                        />
+                        <Scene 
+                            key='Orders' 
+                            component={ManagerHome} 
+                            hideNavBar 
+                            keyColor='black'
+                            iconName='receipt'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon}
+                        />
                     </Scene>
                     <Scene key='cook' hideNavBar>
                         <Scene key='CookHome' initial={true} component={CookHome} hideNavBar />

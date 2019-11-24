@@ -3,6 +3,7 @@ import { StyleSheet, SafeAreaView, Text,View, KeyboardAvoidingView} from 'react-
 import { TextField } from 'react-native-material-textfield';
 import Button from 'react-native-button';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import {Header} from '../common/components';
 import firebase from 'firebase';
@@ -27,23 +28,24 @@ class Login extends Component{
                         .database()
                         .ref(`/users/${res.user.uid}`)
                         .on('value', snapshot => {
-                            switch (snapshot.val().accountType){
-                              case 'customer':
-                                Actions.customer();
-                                break;
-                              case 'manager':
-                                Actions.customer();
-                                break;
-                              case 'delivery':
-                                Actions.customer();
-                                break;
-                              case 'cook':
-                                Actions.customer();
-                                break;
-                              case 'salesperson':
-                                Actions.customer();
-                                break;
-                            }
+                          this.props.dispatch( {type: 'LOGIN_SUCCESS', payload: snapshot.val()} );
+                          switch (snapshot.val().accountType){
+                            case 'customer':
+                              Actions.customer();
+                              break;
+                            case 'manager':
+                              Actions.manager();
+                              break;
+                            case 'delivery':
+                              Actions.delivery();
+                              break;
+                            case 'cook':
+                              Actions.cook();
+                              break;
+                            case 'salesperson':
+                              Actions.salesperson();
+                              break;
+                          }
                         });   
                 }
             }).catch(error => {
@@ -106,4 +108,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Login;
+export default connect()(Login);

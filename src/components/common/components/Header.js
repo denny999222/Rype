@@ -11,7 +11,7 @@
 // "onPressRight": action of what right button does
 import React,{Component} from 'react';
 import {StyleSheet, View, Text, Image, TouchableOpacity, SafeAreaView} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 class Header extends Component{
 

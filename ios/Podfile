@@ -36,6 +36,8 @@ target 'restaurant_app' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'RNImageCropPicker', :path => '../node_modules/react-native-image-crop-picker'
+
   target 'restaurant_appTests' do
     inherit! :search_paths
     # Pods for testing
