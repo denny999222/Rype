@@ -1,15 +1,20 @@
-import React, {Component} from 'react';
-import {Actions} from 'react-native-router-flux';
-import Button from 'react-native-button';
-import { connect } from 'react-redux';
-import { TextField } from 'react-native-material-textfield';
-import { StyleSheet, SafeAreaView, Text, View, TouchableOpacity, ScrollView, Image} from 'react-native';
-import ImagePicker from 'react-native-image-crop-picker';
+// dependencies are found in package.json
+// just google the dependency name on google to know what the dependency is
+// if you want to change screens manually to visually see the screen you are working on, then simply
+// go to RouterComponent.js and change "initial" and move it around to whichever component you like
+import React, {Component} from 'react'; // default imports
+import {Actions} from 'react-native-router-flux'; //Actions simply navigates to different screens
+import Button from 'react-native-button'; // another dependency
+import { connect } from 'react-redux'; // manages data flow (dont need to understand)
+import { TextField } from 'react-native-material-textfield'; //dependency online
+import { StyleSheet, SafeAreaView, Text, View, TouchableOpacity, ScrollView, Image} from 'react-native'; //default components
+import ImagePicker from 'react-native-image-crop-picker'; // this another dependency for photo gallery
 
 
 class ManagerHome extends Component{
   constructor(){
     super();
+    // these states are properties of the component ManagerHome
     this.state = {
       name: '',
       address: '',
@@ -21,16 +26,17 @@ class ManagerHome extends Component{
   }
 
   onFieldChanged = (state, text) => {
-    this.setState({[state]: text});
+    //this is a function inherited from Component. It simply modifies one of the properties inside state
+    this.setState({[state]: text}); 
   }
 
-  onGradeSelected = (selectedType) => {
+  onGradeSelected = (selectedType) => {// this makes the selected letter grade green when selected
     if (selectedType === this.state.accountType){
         return {backgroundColor:'#188a32', borderWidth:.5,justifyContent: 'center'}
     }else{
         return {backgroundColor:'white', borderWidth:.5, justifyContent: 'center'}
     }
-}
+  }
 
   onTextColorChange = (selectedType) => {
       if (selectedType === this.state.accountType){
@@ -49,7 +55,7 @@ class ManagerHome extends Component{
       console.log(image);
     });
   } 
-  
+
 
   renderImage = () => {
 
@@ -73,7 +79,7 @@ class ManagerHome extends Component{
           <TextField
             label="Restaurant Name" 
             value={name} 
-            onChangeText={(text) => this.onFieldChanged('name', text) }
+            onChangeText={ (text) => this.onFieldChanged('name', text) }
           />
           <TextField
             label="Address" 

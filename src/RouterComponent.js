@@ -25,7 +25,7 @@ class RouterComponent extends Component {
         return (
             <Router>
                 <Scene key='root' >  
-                    <Scene key='RootScreen' initial component={RootScreen} hideNavBar />
+                    <Scene key='RootScreen' component={RootScreen} hideNavBar />
                     <Scene key='Login' component={Login} hideNavBar />
                     <Scene key='SignUp' component={SignUp} hideNavBar />
 
@@ -66,7 +66,7 @@ class RouterComponent extends Component {
                             icon={TabIcon}
                         />
                     </Scene>
-                    <Scene key='cook' hideNavBar>
+                    <Scene key='cook' initial={true} hideNavBar>
                         <Scene key='CookHome' initial={true} component={CookHome} hideNavBar />
 
                     </Scene>

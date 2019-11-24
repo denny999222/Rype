@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* restaurant_appTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* restaurant_appTests.m */; };
 		07C562B160DE4200A27419C1 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 738B50D16B0A4BA4A3418A8C /* Entypo.ttf */; };
