@@ -19,38 +19,41 @@ class Login extends Component{
       }
   }
 
-  onLogin = () => {
-      const {email, password} = this.state;
-        firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(async res => {
-                if (res.user.uid != null || res.user.uid != undefined) {
-                    await firebase
-                        .database()
-                        .ref(`/users/${res.user.uid}`)
-                        .on('value', snapshot => {
-                          this.props.dispatch( {type: 'LOGIN_SUCCESS', payload: snapshot.val()} );
-                          switch (snapshot.val().accountType){
-                            case 'customer':
-                              Actions.customer();
-                              break;
-                            case 'manager':
-                              Actions.manager();
-                              break;
-                            case 'delivery':
-                              Actions.delivery();
-                              break;
-                            case 'cook':
-                              Actions.cook();
-                              break;
-                            case 'salesperson':
-                              Actions.salesperson();
-                              break;
-                          }
-                        });   
+  onLogin = async () => {
+      const {email, password} = this.state; // receives email and password from state
+      // calls firebase authentication with email and password input
+      // checks to see if the account is registered
+      // if account is registered, then navigate to next page
+      await firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(async res => {
+          if (res.user.uid != null || res.user.uid != undefined) {
+            await firebase.database().ref(`/users/${res.user.uid}`)
+              .on('value', snapshot => {
+                this.props.dispatch( {type: 'LOGIN_SUCCESS', payload: snapshot.val()} );
+                // depending on the account type (manager, customer, cook, etc),
+                // will navigate to different screens
+                switch (snapshot.val().accountType){
+                  case 'customer':
+                    Actions.customer();
+                    break;
+                  case 'manager':
+                    Actions.manager();
+                    break;
+                  case 'delivery':
+                    Actions.delivery();
+                    break;
+                  case 'cook':
+                    Actions.cook();
+                    break;
+                  case 'salesperson':
+                    Actions.salesperson();
+                    break;
                 }
-            }).catch(error => {
-              this.setState({error: error.message})
-          })
+              });   
+          }
+        }).catch(error => {
+          this.setState({error: error.message})
+        })
           
   }
 

@@ -33,7 +33,7 @@ class RouterComponent extends Component {
                         <Scene key='CustomerHome' initial={true} component={CustomerHome} hideNavBar />
 
                     </Scene>
-                    <Scene key='manager' activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
+                    <Scene key='manager' initial={true} activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
                         <Scene 
                             key='ManagerHome' 
                             initial={true} 
@@ -66,7 +66,7 @@ class RouterComponent extends Component {
                             icon={TabIcon}
                         />
                     </Scene>
-                    <Scene key='cook' initial={true} hideNavBar>
+                    <Scene key='cook' hideNavBar>
                         <Scene key='CookHome' initial={true} component={CookHome} hideNavBar />
 
                     </Scene>

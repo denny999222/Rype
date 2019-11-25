@@ -49,7 +49,7 @@ class CookHome extends Component{
                 <Text> {menuItem.item[1].email} </Text>
               )
             } }
-            keyExtractor = {() => {return 1}}
+            keyExtractor = {(menuItem) => {return menuItem.item[1].email}}
           />
 
       </SafeAreaView>
@@ -67,3 +67,131 @@ const styles = StyleSheet.create({
 });
 
 export default CookHome;
+
+
+
+// MANAGER
+// payDelivery = (deliveryID, amount) => {
+//   const {nonce, payerId, email, firstName, lastName, phone } = await requestOneTimePayment
+//   (
+//     token,
+//   {
+//     amount: amount, // required
+//     // any PayPal supported currency (in this case USD) 
+//     currency: 'USD',
+//     // any PayPal supported locale 
+//     localeCode: 'en_GB', 
+//     shippingAddressRequired: false,
+//     userAction: 'commit', // display 'Pay Now' on the PayPal review page
+//     // one of 'authorize', 'sale', 'order'. defaults to 'authorize'. 
+//     intent: 'authorize', 
+//   }
+//   );
+  
+// }
+
+// changeCommision = async (percent, userID, employeeType) => {
+//   const {restaurantID} = this.props;
+//   // receives userID and employee type and changes their rate inside firebase database
+//   await firebase.database().ref(`/${restaurantID}/${employeeType}/${userID}/`).child('commision')
+//     .transaction(rate => { // this works for decrease/increase commision too
+//       return rate += percent;
+//     }) 
+// }
+
+// // SALESPERSON
+// pickSupply = async (supplies) => {
+//   const {restaurantID} = this.props;
+//   let maxRating = 0; // assumes best rating is the first element
+//   // loops through the supplies to find best match
+//   for (let i = 1; i<supplies.length; i++){
+//     if (supples[maxRating] < supplies[i]){
+//       maxRating = i;
+//     }
+//   }
+//   // updates the supplies in database
+//   await firebase.database().ref(`/${restaurantID}`).child(supplies)
+//     .update({supplies: supplies[maxRating]})
+// }
+
+// negotiatePrice = async (userID, bidAmount, currentAmount) => {
+//   if ( !(bidAmount >= currentAmount) ){ // only if bid is less than current
+//     await firebase.database().ref(`users/${userID}`).child('offer')
+//       .transaction(current => {
+//         return bidAmount
+//       })
+//   }
+// }
+
+// // DELIVERY
+// shortestRoute = (currentLocation, destination) => {
+//   handleGetDirections = () => {
+//     const data = {
+//        source: {
+//         latitude: currentLocation.latitude,
+//         longitude: currentLocation.longitude
+//       },
+//       destination: {
+//         latitude: destination.latitude,
+//         longitude: destination.longitude
+//       },
+//       params: [
+//         {
+//           key: "travelmode",
+//           value: "driving" // may be "walking", "bicycling" or "transit" as well
+//         },
+//         {
+//           key: "dir_action",
+//           value: "navigate" // this instantly initializes navigation using the given travel mode
+//         }
+//       ]
+//     }
+ 
+//     getDirections(data); // function imported from google API
+//   }
+// }
+
+// //similar to negotiatePrice function
+// foodBid = (bidAmount, currentAmount) => {
+//   if ( !(bidAmount >= currentAmount) ){ // only if bid is less than current
+//     await firebase.database().ref(`users/${userID}`).child('offer')
+//       .transaction(current => { // updates new bid offer
+//         return bidAmount
+//       })
+//   }
+// }
+
+
+// negotiatePrice = async (userID, bidAmount, currentAmount) => {
+//   if ( !(bidAmount >= currentAmount) ){ // only if bid is less than current
+//     await firebase.database().ref(`users/${userID}`).child('offer')
+//       .transaction(current => {
+//         return bidAmount
+//       })
+//   }
+// }
+
+// winSupply = async (userID) => {
+//   const {restaurantID} = this.props; // gets restaurant from props
+//   await firebase.database().ref(`restaurants/${restaurantID}`).child('supply').on('value', snapshot => {
+//     await firebase.database().ref(`/users/${userID}`).set({supply: snapshot.val()})
+//   })
+// }
+
+
+// //USER CUSTOMER
+// rateCook = async (cookID, totalRatings) => {
+//   const {rating} = this.state;
+//   await firebase.database().ref(`/users/${salespersonID}`).child('rating')
+//     .transaction( rating2 => {
+//       return (rating2 + rating)/(totalRatings+1)
+//     })
+// }
+
+// rateDelivery = (deliveryID, totalRatings) => {
+//   const {rating} = this.state;
+//   await firebase.database().ref(`/users/${deliveryID}`).child('rating')
+//     .transaction( rating2 => {
+//       return (rating2 + rating)/(totalRatings+1)
+//     })
+// }

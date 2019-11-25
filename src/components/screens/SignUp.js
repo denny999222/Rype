@@ -23,20 +23,20 @@ class SignUp extends Component{
     }
 
     onRegister = async () => {
-        const {email, password, confirmPassword, accountType} = this.state;
+        const {email, password, accountType} = this.state; // receives credentials from state
+        // calls firebase function to register this user with given email and password
         await firebase.auth().createUserWithEmailAndPassword(email, password).then(async res => {
+            // checks if the account already exists
             if (res.user.uid !== null || res.user.uid !== undefined) {
+                // stores the user's credentials into our database
                 await firebase.database().ref(`/users/${res.user.uid}`) 
-                .set({
-                    email: email,
-                    accountType: accountType,
-                    userID: res.user.id
-                }); 
+                .set({email: email, accountType: accountType, userID: res.user.id}); 
                 this.props.dispatch( {
                     type: 'SIGNUP_SUCCESS', 
                     payload: {email, accountType} 
-                } ); // saves the users data to store in Auth store
-
+                } ); 
+                // depending on the account type (manager, cook, etc)
+                // it will re reoute them to different pages
                 switch (accountType) {
                     case 'manager':
                         Actions.manager();
