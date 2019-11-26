@@ -3,12 +3,16 @@ import {Actions} from 'react-native-router-flux';
 import Button from 'react-native-button';
 import { StyleSheet, SafeAreaView, Text, View, FlatList} from 'react-native';
 import firebase from 'firebase';
+import {SectionList} from '../../common/components/';
 
 class CookHome extends Component{
   constructor(){
     super();
     this.state = {
-      menuList: [] // ingredients AND food Name
+      name: 'Bujar',
+      warning: '2',
+      menuList: ['Pizza', 'Burger', 'Taco', 'Pasta'], // food Name
+      supplyList: ['Tomoatoes','Cucumbers','Salt','Pepper'] //supplies
     }
   }
 
@@ -30,28 +34,60 @@ class CookHome extends Component{
     await firebase.database().ref(`/users`).on('value', snapshot => {
       let menuListArray = Object.entries(snapshot.val());
       this.setState({menuList: menuListArray});
+      
+      //Must fetch name, warning, and supply
+
+
     })
   }
+
+  //Direct to menu page
+  onMenu = () => {
+
+  }
+
+    //Direct to supply page
+    onSupply = () => {
+
+    }
+
+
 
   render(){
     return (
       <SafeAreaView style={styles.container} >
-          <Text stlye={{fontSize:40}} > COOK HOME! </Text>
+          {/*<Text style={{fontSize:40, textAlign:'center', marginBottom: 15}} > HOME </Text>*/}
+          <Text style={{fontSize:40, textAlign:'center', marginBottom: 15}}>Welcome, {this.state.name} </Text>
+          <Text style={{fontSize:20, marginBottom: 15}}>Number of warnings: {this.state.warning}</Text>
 
           {/* This flatlist tkaes in menuList from state as the data.
               RenderItem takes in a funtion with argument element of the array menuList and simply returns the emails as test.
               KeyExtractor is not that important, but react native recommends that each element has a unique ID in ANY list so you can identify it easily. 
               So what KeyExtractor does is simply give a unique ID for each. It takes in a function as an argument*/}
-          <FlatList
-            data = {this.state.menuList}
-            renderItem = { function(menuItem){
-              return (
-                <Text> {menuItem.item[1].email} </Text>
-              )
-            } }
-            keyExtractor = {(menuItem) => {return menuItem.item[1].email}}
-          />
 
+          <SectionList title='Menu' list={['Pizza','Burger','Crossaint','Donut','Eggplant Parmagania','French Fries']} bannerColor='#6f2da8' titleColor='white' height={250} />
+          
+          {/* Might want to add the <Keyboard> tags that are in Home */}
+              <Button 
+                  onPress={() => this.onMenu()} 
+                  containerStyle={{bottom:0}}
+                  style={{borderRadius:20, overflow:'hidden', backgroundColor:'#66a82d', padding:10, paddingLeft: 50, paddingRight: 50, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} 
+              > 
+                  Add/Remove Menu Items
+              </Button>
+
+          <Text style={{margin: 10}}> </Text>
+          <SectionList title='Supplies' list={['Tomoatoes','Cucumbers','Salt','Pepper']} bannerColor='#6f2da8' titleColor='white' height={175} />
+          
+          {/* Might want to add the <Keyboard> tags that are in Home */}
+              <Button 
+                  onPress={() => this.onSupply()} 
+                  containerStyle={{bottom:0}}
+                  style={{borderRadius:20, overflow:'hidden', backgroundColor:'#66a82d', padding:10, paddingLeft: 50, paddingRight: 50, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} 
+              > 
+                  Order Supply Items
+              </Button>
+  
       </SafeAreaView>
     );
   }
@@ -63,6 +99,7 @@ class CookHome extends Component{
 const styles = StyleSheet.create({
   container:{
     flex:1,
+    backgroundColor: 'white'
   }
 });
 
