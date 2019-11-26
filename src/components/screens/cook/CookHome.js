@@ -9,6 +9,8 @@ class CookHome extends Component{
   constructor(){
     super();
     this.state = {
+      name: 'Bujar',
+      warning: '2',
       menuList: ['Pizza', 'Burger', 'Taco', 'Pasta'], // food Name
       supplyList: ['Tomoatoes','Cucumbers','Salt','Pepper'] //supplies
     }
@@ -32,6 +34,10 @@ class CookHome extends Component{
     await firebase.database().ref(`/users`).on('value', snapshot => {
       let menuListArray = Object.entries(snapshot.val());
       this.setState({menuList: menuListArray});
+      
+      //Must fetch name, warning, and supply
+
+
     })
   }
 
@@ -50,7 +56,9 @@ class CookHome extends Component{
   render(){
     return (
       <SafeAreaView style={styles.container} >
-          <Text style={{fontSize:40, textAlign:'center', marginBottom: 15}} > COOK HOME </Text>
+          {/*<Text style={{fontSize:40, textAlign:'center', marginBottom: 15}} > HOME </Text>*/}
+          <Text style={{fontSize:40, textAlign:'center', marginBottom: 15}}>Welcome, {this.state.name} </Text>
+          <Text style={{fontSize:20, marginBottom: 15}}>Number of warnings: {this.state.warning}</Text>
 
           {/* This flatlist tkaes in menuList from state as the data.
               RenderItem takes in a funtion with argument element of the array menuList and simply returns the emails as test.
