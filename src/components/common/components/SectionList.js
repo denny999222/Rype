@@ -14,10 +14,17 @@ class SectionList extends Component {
         )
     }
 
+    determineHeight = () => {
+        if (this.props.height === undefined || this.props.height === null){
+            return 172;
+        }
+        return this.props.height;
+    }
+
     render(){
         const {title, list, bannerColor, titleColor, height} = this.props;
         return (
-            <View style={{borderTopLeftRadius:20, borderTopRightRadius:20, overflow:'hidden', marginHorizontal:10, marginBottom:10, height:height}} >
+            <View style={{borderTopLeftRadius:20, borderTopRightRadius:20, overflow:'hidden', marginHorizontal:10, marginBottom:10, height:this.determineHeight() }} >
                 <Text style={{fontSize: 16, textAlign:'center', backgroundColor: bannerColor, color: titleColor, paddingLeft:15, paddingVertical: 8, borderWidth:.4, borderColor:'grey'}}> {title} </Text>
                 <FlatList
                     data = {list}
