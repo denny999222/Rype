@@ -8,6 +8,10 @@ import CustomerHome from './components/screens/customer/CustomerHome';
 import ManagerHome from './components/screens/manager/ManagerHome';
 import DeliveryHome from './components/screens/delivery/DeliveryHome';
 import CookHome from './components/screens/cook/CookHome';
+import CookIngredientList from './components/screens/cook/CookIngredientList';
+import CookIngredientRequest from './components/screens/cook/CookIngredientRequest';
+import CookComplain from './components/screens/cook/CookComplain';
+import CookMenuList from './components/screens/cook/CookMenuList';
 import SalespersonHome from './components/screens/salesperson/SalespersonHome';
 import {TabIcon} from './components/common/components';
 import firebase from 'firebase';
@@ -33,7 +37,7 @@ class RouterComponent extends Component {
                         <Scene key='CustomerHome' initial={true} component={CustomerHome} hideNavBar />
 
                     </Scene>
-                    <Scene key='manager' initial={true} activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
+                    <Scene key='manager' activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
                         <Scene 
                             key='ManagerHome' 
                             initial={true} 
@@ -66,8 +70,12 @@ class RouterComponent extends Component {
                             icon={TabIcon}
                         />
                     </Scene>
-                    <Scene key='cook' hideNavBar>
-                        <Scene key='CookHome' initial={true} component={CookHome} hideNavBar />
+                    <Scene key='cook' initial={true} shideNavBar>
+                        <Scene key='CookHome' component={CookHome} hideNavBar />
+                        <Scene key='CookIngredientList' component={CookIngredientList} hideNavBar />
+                        <Scene key='CookIngredientRequest' component={CookIngredientRequest} hideNavBar />
+                        <Scene key='CookComplain' initial={true} component={CookComplain} hideNavBar />
+                        <Scene key='CookMenuList' initial={true} component={CookMenuList} hideNavBar />
 
                     </Scene>
                     <Scene key='delivery' hideNavBar>
