@@ -10,6 +10,7 @@ import {SectionList} from '../../common/components/';
 
 class CookComplain extends Component {
 //Adding note just to test why my github user doesn't appear
+//Retesting with email
     constructor(){
         super();
         this.state = {
