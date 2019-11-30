@@ -5,14 +5,11 @@ import { connect } from 'react-redux'; // manages data flow (dont need to unders
 import { TextField } from 'react-native-material-textfield'; //dependency online
 import { StyleSheet, SafeAreaView, Text, View, TouchableOpacity, ScrollView, Image, KeyboardAvoidingView} from 'react-native'; //default components
 import ImagePicker from 'react-native-image-crop-picker'; // this another dependency for photo gallery
+import {Header} from '../../common/components/';
 import firebase from 'firebase';
-import RNFetchBlob from 'rn-fetch-blob'
-import ManagerRegister from './ManagerRegister';
-import ManagerInfo from './ManagerInfo';
-import {SectionList} from '../../common/components/';
 
 
-class ManagerHome extends Component{
+class ManageCustomers extends Component{
   constructor(){
     super();
     this.state = {
@@ -23,7 +20,12 @@ class ManagerHome extends Component{
   render(){
     return (
       <SafeAreaView style={styles.container} >
-        <ManagerInfo/>
+        <Header
+            name='Login' 
+            contentStyle={{fontSize:30, color:'black', fontWeight:'bold'}} 
+            containerStyle={{backgroundColor:'#188a32'}}
+            onPressLeft = {() => Actions.pop()}
+        />
       </SafeAreaView>
     );
   }
@@ -33,11 +35,10 @@ class ManagerHome extends Component{
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    backgroundColor:'white'
   }
 });
 
 
-export default ManagerHome;
+export default ManageCustomers;
 
 

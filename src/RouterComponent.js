@@ -10,6 +10,7 @@ import DeliveryHome from './components/screens/delivery/DeliveryHome';
 import CookHome from './components/screens/cook/CookHome';
 import SalespersonHome from './components/screens/salesperson/SalespersonHome';
 import {TabIcon} from './components/common/components';
+import ManageCustomers from './components/screens/manager/ManageCustomers';
 import firebase from 'firebase';
 import {connect} from 'react-redux';
 
@@ -36,7 +37,6 @@ class RouterComponent extends Component {
                     <Scene key='manager' initial={true} activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
                         <Scene 
                             key='ManagerHome' 
-                            initial={true} 
                             component={ManagerHome} 
                             hideNavBar 
                             keyColor='black'
@@ -47,10 +47,11 @@ class RouterComponent extends Component {
                         />
                         <Scene 
                             key='Bidding' 
-                            component={ManagerHome} 
+                            component={ManageCustomers} 
+                            initial={true} 
                             hideNavBar 
                             keyColor='black'
-                            iconName='file-invoice-dollar'
+                            iconName='address-book'
                             iconColor='white'
                             iconSize={24}
                             icon={TabIcon}
@@ -67,16 +68,88 @@ class RouterComponent extends Component {
                         />
                     </Scene>
                     <Scene key='cook' hideNavBar>
-                        <Scene key='CookHome' initial={true} component={CookHome} hideNavBar />
-
+                        <Scene 
+                            key='CookHome' 
+                            initial={true} 
+                            component={CookHome} 
+                            hideNavBar 
+                        />
+                        <Scene 
+                            key='Bidding' 
+                            component={CookHome} 
+                            hideNavBar 
+                            keyColor='black'
+                            iconName='file-invoice-dollar'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon}
+                        />
+                        <Scene 
+                            key='Orders' 
+                            component={CookHome} 
+                            hideNavBar 
+                            keyColor='black'
+                            iconName='receipt'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon}
+                        />
                     </Scene>
                     <Scene key='delivery' hideNavBar>
-                        <Scene key='DeliveryHome' initial={true} component={DeliveryHome} hideNavBar />
-
+                        <Scene 
+                            key='DeliveryHome' 
+                            initial={true} 
+                            component={DeliveryHome} 
+                            hideNavBar 
+                        />
+                        <Scene 
+                            key='Bidding' 
+                            component={DeliveryHome} 
+                            hideNavBar 
+                            keyColor='black'
+                            iconName='file-invoice-dollar'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon}
+                        />
+                        <Scene 
+                            key='Orders' 
+                            component={DeliveryHome} 
+                            hideNavBar 
+                            keyColor='black'
+                            iconName='receipt'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon}
+                        />
                     </Scene>
                     <Scene key='salesperson' hideNavBar>
-                        <Scene key='SalespersonHome' initial={true} component={SalespersonHome} hideNavBar />
-
+                        <Scene 
+                            key='SalespersonHome' 
+                            initial={true} 
+                            component={SalespersonHome} 
+                            hideNavBar 
+                        />
+                        <Scene 
+                            key='Bidding' 
+                            component={SalespersonHome} 
+                            hideNavBar 
+                            keyColor='black'
+                            iconName='file-invoice-dollar'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon}
+                        />
+                        <Scene 
+                            key='Orders' 
+                            component={SalespersonHome} 
+                            hideNavBar 
+                            keyColor='black'
+                            iconName='receipt'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon}
+                        />
                     </Scene>
                 </Scene>
             </Router>
