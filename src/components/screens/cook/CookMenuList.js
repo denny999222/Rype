@@ -12,7 +12,8 @@ class CookMenuList extends Component {
         super();
         this.state = {
             //Here we list out the menu items/objects. Each menu item has the name, and 
-            menu: [{name: 'Dumplings', rating: '3'}, {name: 'Sesame Chicken', rating: '3'}, {name: 'Lo Mein', rating: '3'}]
+            menu: [{name: 'Dumplings', rating: '3'}, {name: 'Sesame Chicken', rating: '3'}, {name: 'Lo Mein', rating: '3'}],
+            foodList: [{name: 'Fried Chicken and French Fries', rating: '2'}, {name: 'Pad Thai', rating: '1'}, {name: 'Chicken Teryiki', rating: '5'}]
         }
     }
 
@@ -32,22 +33,33 @@ class CookMenuList extends Component {
 
     }
 
+    //Add the food item to the menu
+    onAdd = () => {
+
+    }
+
+    //Goes to the form that creates a new food
+    addFoodItem = () => {
+
+    }
 
     render(){
         return(
             <SafeAreaView style={styles.container}>
             <View style={{justifyContent: 'center'}}>
-                <Text>Menu</Text>
+                <Text style={{fontSize: 35, textAlign: 'center'}}>Menu</Text>
             </View>
 
-            <View>
+
+            {/* This is the list of items that the cook currently has on the menu! */}
+            <View style={{marginVertical: 10}}>
 
                 <View style={{marginHorizontal: 10, flexDirection: 'row', flexWrap: 'wrap', borderWidth: 1, padding: 7, backgroundColor:'#66a82d'}}>
                     <View style={{ textAlign: 'center', width: '33%'}}>
-                        <Text style={{color:'white', textAlign: 'center'}}>Ingredient  </Text>
+                        <Text style={{color:'white', textAlign: 'center', fontSize: 20}}>Food</Text>
                     </View>
                     <View style={{ width: '33%'}}>
-                        <Text style={{color:'white', textAlign: 'center'}}>Rating </Text> 
+                        <Text style={{color:'white', textAlign: 'center', fontSize: 20}}>Rating</Text> 
                     </View>
                     <View style={{ width: '33%'}}>
                         <Text style={{color:'white', textAlign: 'center'}}>  </Text> 
@@ -64,8 +76,10 @@ class CookMenuList extends Component {
                                     style={{ marginTop:20, alignSelf:'center', padding:10, fontSize: 20, color: 'black', textAlign: 'center'}}>{menuItem.name}  </Button>
                                 </View>
                                 <View style={{ width: '33%'}}>
-                                    <Text style={{textAlign: 'center'}}>{menuItem.rating}/5 </Text> 
+                                    <Text style={{textAlign: 'center', marginTop:20, alignSelf:'center', padding:10, fontSize: 20}}>{menuItem.rating}/5 </Text> 
                                     
+                                    { /* Why is a cook rating his food?? */
+                                        /*
                                     <Button 
                                         onPress={() => this.onRequest()}  
                                         containerStyle={{bottom:0}}
@@ -73,6 +87,7 @@ class CookMenuList extends Component {
                                     > 
                                         Rate
                                         </Button>
+                                        */}
 
                                 </View>
                                 <View style={{ width: '33%'}}>
@@ -89,8 +104,70 @@ class CookMenuList extends Component {
                         );
                     })
                 }
+
                 </View>
 
+
+                <View style={{marginVertical: 10}}> 
+
+                <View style={{marginHorizontal: 10, flexDirection: 'row', flexWrap: 'wrap', borderWidth: 1, padding: 7, backgroundColor:'#66a82d'}}>
+                    <View style={{ textAlign: 'center', width: '33%'}}>
+                        <Text style={{color:'white', textAlign: 'center', fontSize: 20}}>Food</Text>
+                    </View>
+                    <View style={{ width: '33%'}}>
+                        <Text style={{color:'white', textAlign: 'center', fontSize: 20}}>Rating</Text> 
+                    </View>
+                    <View style={{ width: '33%'}}>
+                        <Text style={{color:'white', textAlign: 'center', fontSize: 20}}>  </Text> 
+                    </View>
+                </View>
+                {
+                    this.state.foodList.map( (foodItem) =>{
+                        return ( 
+                            <View style={{marginHorizontal: 10, flexDirection: 'row', flexWrap: 'wrap', borderWidth: 1, padding: 3}}>
+                                <View style={{ textAlign: 'center', width: '33%'}}>
+                                    <Button 
+                                    onPress = {()=> this.onTitlePressed()}
+                                    contaimerStyle={{bottom:0}}
+                                    style={{ marginTop:20, alignSelf:'center', padding:10, fontSize: 20, color: 'black', textAlign: 'center'}}>{foodItem.name}  </Button>
+                                </View>
+                                <View style={{ width: '33%'}}>
+                                    <Text style={{textAlign: 'center', marginTop:20, alignSelf:'center', padding:10, fontSize: 20}}>{foodItem.rating}/5 </Text> 
+                                    
+                                    { /* Why are we rating? */
+                                        /* <Button 
+                                        onPress={() => this.onRequest()}  
+                                        containerStyle={{bottom:0}}
+                                        style={{backgroundColor:'#6f2da8', padding:10, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} 
+                                    > 
+                                        Rate
+                                        </Button>
+                                    */}
+
+                                </View>
+                                <View style={{ width: '33%'}}>
+                                    <Button 
+                                        onPress={() => this.onAdd()}  
+                                        containerStyle={{bottom:0}}
+                                        style={{backgroundColor:'#00cccc', padding:10, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} 
+                                    > 
+                                        Add
+                                        </Button>
+                                </View>
+                            </View>
+                        
+                        );
+                    })
+                }
+
+                </View>
+                <Button 
+                    onPress={() => this.addFoodItem()}  
+                    containerStyle={{bottom:0}}
+                    style={{backgroundColor:'#66a82d', padding:10, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} 
+                > 
+                Add Menu Item
+                </Button>
 
 
 
