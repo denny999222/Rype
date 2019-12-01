@@ -90,7 +90,7 @@ class CookAddFoodItem extends Component {
 
                         <View style={{marginHorizontal: 10, flexDirection: 'row', flexWrap: 'wrap', borderWidth: 1, padding: 7, backgroundColor:'#66a82d'}}>
                             <View style={{ textAlign: 'center', width: '33%'}}>
-                                <Text style={{color:'white', textAlign: 'center', fontSize: 20}}>Food</Text>
+                                <Text style={{color:'white', textAlign: 'center', fontSize: 20}}>Ingredient</Text>
                             </View>
                             <View style={{ width: '33%'}}>
                                 <Text style={{color:'white', textAlign: 'center', fontSize: 20}}>Quantity</Text> 
