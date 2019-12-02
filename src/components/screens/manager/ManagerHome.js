@@ -23,7 +23,7 @@ class ManagerHome extends Component{
   render(){
     return (
       <SafeAreaView style={styles.container} >
-        <ManagerRegister/>
+        <ManagerInfo/>
       </SafeAreaView>
     );
   }
