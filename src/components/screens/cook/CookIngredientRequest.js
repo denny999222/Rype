@@ -79,13 +79,13 @@ class CookIngredientRequest extends Component {
                     <View style={{flexDirection:'row', alignSelf:'center'}} >
                         <Text style={{fontSize: 18}}>Specialty:   </Text>
                         <TouchableOpacity onPress={() => this.setState({specialty:'Organic'}) } style={this.onGradeSelected('Organic')} >
-                            <Text style={this.onTextColorChange('Organic')} >  Organic </Text>
+                            <Text style={this.onTextColorChange('Organic')} >Organic</Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.setState({specialty:'Vegan'}) } style={this.onGradeSelected('Vegan')} >
-                            <Text style={this.onTextColorChange('Vegan')} >  Vegan </Text>
+                            <Text style={this.onTextColorChange('Vegan')} >Vegan</Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.setState({specialty:'N/A'}) } style={this.onGradeSelected('N/A')} >
-                            <Text style={this.onTextColorChange('Vegan')} >  N/A </Text>
+                            <Text style={this.onTextColorChange('N/A')} >N/A</Text>
                         </TouchableOpacity>
                     </View>
 
