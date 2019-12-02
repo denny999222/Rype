@@ -23,10 +23,7 @@ class ManagerHome extends Component{
   render(){
     return (
       <SafeAreaView style={styles.container} >
-          <SectionList title='Denny' list={['a','b','c','d','e','f']} bannerColor='blue' titleColor='white' height={200} />
-          <SectionList title='Bujar' list={['a','b','c', 'd','e']}  bannerColor ='yellow' titleColor='white' />
-          <SectionList title='Dsadasdas' list={['a','b','c']}  bannerColor='red' titleColor='white' />
-          <SectionList title='Drtstaa' list={['a','b','c']} bannerColor='green' titleColor='white' />
+        <ManagerInfo/>
       </SafeAreaView>
     );
   }
