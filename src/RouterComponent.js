@@ -5,6 +5,7 @@ import Login from './components/screens/Login';
 import SignUp from './components/screens/SignUp';
 import {AsyncStorage} from 'react-native';
 import CustomerHome from './components/screens/customer/CustomerHome';
+import CustomerOrderReceived from './components/screens/customer/CustomerOrderReceived';
 import ManagerHome from './components/screens/manager/ManagerHome';
 import DeliveryHome from './components/screens/delivery/DeliveryHome';
 import CookHome from './components/screens/cook/CookHome';
@@ -35,7 +36,8 @@ class RouterComponent extends Component {
                     <Scene key='SignUp' component={SignUp} hideNavBar />
 
                     <Scene key='customer' initial={true} hideNavBar>
-                        <Scene key='CustomerHome' initial={true} component={CustomerHome} hideNavBar />
+                        <Scene key='CustomerHome' component={CustomerHome} hideNavBar />
+                        <Scene key='CustomerOrderReceived' initial={true} component={CustomerOrderReceived} hideNavBar />
 
                     </Scene>
                     <Scene key='manager' activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
