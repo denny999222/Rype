@@ -8,9 +8,14 @@ import CustomerHome from './components/screens/customer/CustomerHome';
 import ManagerHome from './components/screens/manager/ManagerHome';
 import DeliveryHome from './components/screens/delivery/DeliveryHome';
 import CookHome from './components/screens/cook/CookHome';
+import CookIngredientList from './components/screens/cook/CookIngredientList';
+import CookIngredientRequest from './components/screens/cook/CookIngredientRequest';
+import CookComplain from './components/screens/cook/CookComplain';
+import CookMenuList from './components/screens/cook/CookMenuList';
 import SalespersonHome from './components/screens/salesperson/SalespersonHome';
 import {TabIcon} from './components/common/components';
-import ManageCustomers from './components/screens/manager/ManageCustomers';
+import ManagerCustomers from './components/screens/manager/ManagerCustomers';
+import ManagerComplaints from './components/screens/manager/ManagerComplaints';
 import firebase from 'firebase';
 import {connect} from 'react-redux';
 
@@ -38,6 +43,7 @@ class RouterComponent extends Component {
                         <Scene 
                             key='ManagerHome' 
                             component={ManagerHome} 
+                            initial={true} 
                             hideNavBar 
                             keyColor='black'
                             iconName='utensils'
@@ -47,8 +53,7 @@ class RouterComponent extends Component {
                         />
                         <Scene 
                             key='Bidding' 
-                            component={ManageCustomers} 
-                            initial={true} 
+                            component={ManagerCustomers} 
                             hideNavBar 
                             keyColor='black'
                             iconName='address-book'
@@ -58,7 +63,7 @@ class RouterComponent extends Component {
                         />
                         <Scene 
                             key='Orders' 
-                            component={ManagerHome} 
+                            component={ManagerComplaints} 
                             hideNavBar 
                             keyColor='black'
                             iconName='receipt'
@@ -67,33 +72,13 @@ class RouterComponent extends Component {
                             icon={TabIcon}
                         />
                     </Scene>
-                    <Scene key='cook' hideNavBar>
-                        <Scene 
-                            key='CookHome' 
-                            initial={true} 
-                            component={CookHome} 
-                            hideNavBar 
-                        />
-                        <Scene 
-                            key='Bidding' 
-                            component={CookHome} 
-                            hideNavBar 
-                            keyColor='black'
-                            iconName='file-invoice-dollar'
-                            iconColor='white'
-                            iconSize={24}
-                            icon={TabIcon}
-                        />
-                        <Scene 
-                            key='Orders' 
-                            component={CookHome} 
-                            hideNavBar 
-                            keyColor='black'
-                            iconName='receipt'
-                            iconColor='white'
-                            iconSize={24}
-                            icon={TabIcon}
-                        />
+                    <Scene key='cook' shideNavBar>
+                        <Scene key='CookHome' component={CookHome} hideNavBar />
+                        <Scene key='CookIngredientList' component={CookIngredientList} hideNavBar />
+                        <Scene key='CookIngredientRequest' component={CookIngredientRequest} hideNavBar />
+                        <Scene key='CookComplain' initial={true} component={CookComplain} hideNavBar />
+                        <Scene key='CookMenuList' initial={true} component={CookMenuList} hideNavBar />
+
                     </Scene>
                     <Scene key='delivery' hideNavBar>
                         <Scene 
