@@ -6,6 +6,9 @@ import SignUp from './components/screens/SignUp';
 import {AsyncStorage} from 'react-native';
 import CustomerHome from './components/screens/customer/CustomerHome';
 import CustomerOrderReceived from './components/screens/customer/CustomerOrderReceived';
+import CustomerMenu from './components/screens/customer/CustomerMenu';
+import CustomerShoppingCart from './components/screens/customer/CustomerShoppingCart';
+import CustomerPreviousOrders from './components/screens/customer/CustomerPreviousOrders';
 import ManagerHome from './components/screens/manager/ManagerHome';
 import DeliveryHome from './components/screens/delivery/DeliveryHome';
 import CookHome from './components/screens/cook/CookHome';
@@ -39,14 +42,16 @@ class RouterComponent extends Component {
 
                     <Scene key='customer' initial={true} hideNavBar>
                         <Scene key='CustomerHome' component={CustomerHome} hideNavBar />
-                        <Scene key='CustomerOrderReceived' initial={true} component={CustomerOrderReceived} hideNavBar />
-
+                        <Scene key='CustomerOrderReceived' component={CustomerOrderReceived} hideNavBar />
+                        <Scene key='CustomerMenu' component={CustomerMenu} hideNavBar />
+                        <Scene key='CustomerShoppingCart' component={CustomerShoppingCart} hideNavBar />
+                        <Scene key='CustomerPreviousOrders' initial={true} component={CustomerPreviousOrders} hideNavBar />
+                        
                     </Scene>
-                    <Scene key='manager' initial={true} activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
+                    <Scene key='manager' activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
                         <Scene 
                             key='ManagerHome' 
                             component={ManagerHome} 
-                            initial={true} 
                             hideNavBar 
                             keyColor='black'
                             iconName='utensils'
@@ -75,7 +80,7 @@ class RouterComponent extends Component {
                             icon={TabIcon}
                         />
                     </Scene>
-                    <Scene key='cook' shideNavBar>
+                    <Scene key='cook' hideNavBar>
                         <Scene key='CookHome' component={CookHome} hideNavBar />
                         <Scene key='CookIngredientList' component={CookIngredientList} hideNavBar />
                         <Scene key='CookIngredientRequest' component={CookIngredientRequest} hideNavBar />
