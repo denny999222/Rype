@@ -84,7 +84,7 @@ class DeliveryHome extends Component{
           <View style={{marginHorizontal: 15}}>
             <Image source={{uri:'https://i.stack.imgur.com/JHHER.png'}}  style={{ width:'100%', aspectRatio:1, alignSelf:'center'}} />
           </View>
-          <Text style={{fontSize:20, textAlign: 'center', marginTop: 50}}>New Deliveries</Text>
+          <Text style={{fontSize:20, textAlign: 'center', marginTop: 50}}>Open Deliveries</Text>
           <View style={{marginHorizontal: 30, flexDirection: 'row', flexWrap: 'wrap', padding: 7}}>
             <View style={{width: '33%'}}>
             <Image source={{uri:'https://sachdevasweets.com/img/placeholders/xgrey_fork_and_knife.png,qv=1.pagespeed.ic.w93dy8J8rD.png'}}  style={{width:'40%', aspectRatio:1, alignSelf:'center'}} />
@@ -118,6 +118,13 @@ class DeliveryHome extends Component{
             </View>
           </View>
 
+          <Button 
+              onPress={() => this.onAdd()}  
+              containerStyle={{bottom:0}}
+              style={{backgroundColor:'#66a82d', padding:10, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} 
+              > 
+              See all open deliveries
+            </Button>
       
 
           {/*this.renderImage()*/}
