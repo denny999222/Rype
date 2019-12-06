@@ -39,7 +39,7 @@ class CustomerFoodComplain extends Component {
     render(){
         return(
             <SafeAreaView>
-                <Text>Explain Issue</Text>
+                <Text style={{alignText: 'center'}}>Explain Issue</Text>
                 <TextField
                     label="Complaint"
                     value ={this.state.complaint}
