@@ -6,6 +6,7 @@ import SignUp from './components/screens/SignUp';
 import {AsyncStorage} from 'react-native';
 import CustomerHome from './components/screens/customer/CustomerHome';
 import ManagerHome from './components/screens/manager/ManagerHome';
+import ManagerRegister from './components/screens/manager/ManagerRegister';
 import DeliveryHome from './components/screens/delivery/DeliveryHome';
 import CookHome from './components/screens/cook/CookHome';
 import CookIngredientList from './components/screens/cook/CookIngredientList';
@@ -32,19 +33,19 @@ class RouterComponent extends Component {
         return (
             <Router>
                 <Scene key='root' >  
-                    <Scene key='RootScreen' component={RootScreen} hideNavBar />
+                    <Scene key='RootScreen' initial={true} component={RootScreen} hideNavBar />
                     <Scene key='Login' component={Login} hideNavBar />
                     <Scene key='SignUp' component={SignUp} hideNavBar />
 
-                    <Scene key='customer' initial={true} hideNavBar>
+                    <Scene key='customer' hideNavBar>
                         <Scene key='CustomerHome' initial={true} component={CustomerHome} hideNavBar />
 
                     </Scene>
-                    <Scene key='manager' initial={true} activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
+                    <Scene key='ManagerRegister' component={ManagerRegister} keyColor='black' hideNavBar/>
+                    <Scene key='manager' activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
                         <Scene 
-                            key='ManagerHome' 
+                            key='ManagerInfo' 
                             component={ManagerHome} 
-                            initial={true} 
                             hideNavBar 
                             keyColor='black'
                             iconName='utensils'
