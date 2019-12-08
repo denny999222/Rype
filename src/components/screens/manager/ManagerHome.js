@@ -20,6 +20,10 @@ class ManagerHome extends Component{
     }
   }
 
+  componentDidMount = () => {
+
+  }
+
   render(){
     return (
       <SafeAreaView style={styles.container} >
@@ -38,6 +42,6 @@ const styles = StyleSheet.create({
 });
 
 
-export default ManagerHome;
+export default connect(null , {})(ManagerHome);
 
 

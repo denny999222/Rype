@@ -13,6 +13,7 @@ import CustomerDeliveryComplain from './components/screens/customer/CustomerDeli
 import CustomerRateFood from './components/screens/customer/CustomerRateFood';
 import CustomerFoodComplain from './components/screens/customer/CustomerFoodComplain';
 import ManagerHome from './components/screens/manager/ManagerHome';
+import ManagerRegister from './components/screens/manager/ManagerRegister';
 import DeliveryHome from './components/screens/delivery/DeliveryHome';
 import DeliveryBid from './components/screens/delivery/DeliveryBid';
 import DeliveryCurrentOrder from './components/screens/delivery/DeliveryCurrentOrder';
@@ -46,7 +47,7 @@ class RouterComponent extends Component {
         return (
             <Router>
                 <Scene key='root' >  
-                    <Scene key='RootScreen' component={RootScreen} hideNavBar />
+                    <Scene key='RootScreen' initial={true} component={RootScreen} hideNavBar />
                     <Scene key='Login' component={Login} hideNavBar />
                     <Scene key='SignUp' component={SignUp} hideNavBar />
 
@@ -63,9 +64,10 @@ class RouterComponent extends Component {
 
                         
                     </Scene>
+                    <Scene key='ManagerRegister' component={ManagerRegister} keyColor='black' hideNavBar/>
                     <Scene key='manager' activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
                         <Scene 
-                            key='ManagerHome' 
+                            key='ManagerInfo' 
                             component={ManagerHome} 
                             hideNavBar 
                             keyColor='black'
