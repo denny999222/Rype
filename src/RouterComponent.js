@@ -26,6 +26,8 @@ import CookComplain from './components/screens/cook/CookComplain';
 import CookMenuList from './components/screens/cook/CookMenuList';
 import CookAddFoodItem from './components/screens/cook/CookAddFoodItem';
 import SalespersonHome from './components/screens/salesperson/SalespersonHome';
+import SalespersonOrder from './components/screens/salesperson/SalespersonOrder';
+import SalespersonFindSupplies from './components/screens/salesperson/SalespersonFindSupplies';
 import {TabIcon} from './components/common/components';
 import ManagerCustomers from './components/screens/manager/ManagerCustomers';
 import ManagerComplaints from './components/screens/manager/ManagerComplaints';
@@ -158,8 +160,18 @@ class RouterComponent extends Component {
                     <Scene key='salesperson' initial={true}  hideNavBar>
                         <Scene 
                             key='SalespersonHome' 
-                            initial={true} 
                             component={SalespersonHome} 
+                            hideNavBar 
+                        />
+                        <Scene 
+                            key='SalespersonOrder' 
+                            component={SalespersonOrder} 
+                            hideNavBar 
+                        />
+                        <Scene 
+                            key='SalespersonFindSupplies' 
+                            initial={true} 
+                            component={SalespersonFindSupplies} 
                             hideNavBar 
                         />
                         <Scene 
