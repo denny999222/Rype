@@ -12,15 +12,29 @@ class CustomerHome extends Component{
     super();
     // these states are properties of the component ManagerHome
     this.state = {
-      name: '',
-      address: '',
-      photo:'',
-      phone:'',
+      restaurantName: '',
+      restaurantAddress: '',
+      restaurantPhoto:'',
+      restaurantPhone:'',
       restaurantGrade: 'N/A',
-      description: ''
+      restaurantDescription: '',
+      customerID: '',
+      customerType: '', //This will help distingusih between the registered(vip, non)/non-registered for the different price
+      topFoods: [{name: 'Dumplings'}, {name: 'Sesame Chicken'}, {name: 'Rice Cake'}], //Note, i havent used the bottom two
+      recentThreeOrders: [{name: 'Dumplings'}, {name: 'Sesame Chicken'}, {name: 'Rice Cake'}]
+
     }
   }
 
+  //Need to learn how to make a function to return something ==> BS. 12/2/2019
+    //Aka need to learn Javascript lol...
+  /* //This doesn't currently work
+    calculatePrice = () =>
+    rate = 1;
+    if(this.state.customerType == 'VIP'){
+      
+    }
+  }*/
 
   pickImage = () => {
     ImagePicker.openPicker({
@@ -68,9 +82,11 @@ class CustomerHome extends Component{
   render(){
     return (
       <SafeAreaView style={styles.container} >
-          <Text style={{fontSize:30, textAlign: 'center'}} > CUSTOMER HOME! </Text>
-          <Text style={{fontSize:80, textAlign: 'center', marginVertical: 80}}>MAP</Text>
-          <Text style={{fontSize:20, textAlign: 'center'}}>Top 3 Foods</Text>
+          <Text style={{fontSize:30, textAlign: 'center', marginVertical: 10}} > CUSTOMER HOME! </Text>
+          <View style={{marginHorizontal: 15}}>
+            <Image source={{uri:'https://i.stack.imgur.com/JHHER.png'}}  style={{ width:'100%', aspectRatio:1, alignSelf:'center'}} />
+          </View>
+          <Text style={{fontSize:20, textAlign: 'center', marginVertical: 10}}>Top 3 Foods</Text>
           <View style={{marginHorizontal: 10, flexDirection: 'row', flexWrap: 'wrap', padding: 7}}>
             <View style={{width: '33%'}}>
             <Image source={{uri:'https://sachdevasweets.com/img/placeholders/xgrey_fork_and_knife.png,qv=1.pagespeed.ic.w93dy8J8rD.png'}}  style={{width:'40%', aspectRatio:1, alignSelf:'center'}} />
@@ -154,6 +170,7 @@ class CustomerHome extends Component{
 const styles = StyleSheet.create({
   container:{
     flex:1,
+    backgroundColor: 'white'
   }
 });
 

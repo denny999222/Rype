@@ -6,7 +6,6 @@ import firebase from 'firebase';
 
 import { TextField } from 'react-native-material-textfield';
 import {SectionList} from '../../common/components/';
-import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button'
 
 class CookAddFoodItem extends Component {
 
