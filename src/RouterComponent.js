@@ -157,7 +157,7 @@ class RouterComponent extends Component {
                             icon={TabIcon}
                         />
                     </Scene>
-                    <Scene key='salesperson' initial={true}  hideNavBar>
+                    <Scene key='salesperson'  hideNavBar>
                         <Scene 
                             key='SalespersonHome' 
                             initial={true} 

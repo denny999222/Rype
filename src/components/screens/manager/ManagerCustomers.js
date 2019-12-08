@@ -15,8 +15,24 @@ class ManagerCustomers extends Component{
   constructor(){
     super();
     this.state = {
-      selected: 'pending'
+      selected: 'pending',
+
+      pending: [],
+      approved: [],
+      declined: []
     }
+  }
+
+  componentDidMount = async () => {
+    const {restaurantID} = this.props;
+    await firebase.database().ref(`/restaurant/${restaurantID}`).on('value', snapshot => {
+      if (snapshot.hasChild('pendingCustomers'))
+        this.setState({pending: pendingCustomers});
+      if (snapshot.hasChild('approvedCustomers'))
+        this.setState({accepted: acceptedCustomers});
+      if (snapshot.hasChild('declinedCustomers'))
+        this.setState({declined: declinedCustomers});
+    })
   }
 
   renderBackground = (selected) => {
@@ -38,27 +54,38 @@ class ManagerCustomers extends Component{
   }
 
   renderCustomerPages = () => {
-    const {selected} = this.state;
-    let customers = [ [['1917uniqueID919'], ['name', 'email@gmail.com', 'rating']], [['1917uniqueID919'], ['name', 'email@gmail.com', 'rating']], [['1917uniqueID919'], ['name', 'email@gmail.com', 'rating']], [['1917uniqueID919'], ['name', 'email@gmail.com', 'rating']], [['1917uniqueID919'], ['name', 'email@gmail.com', 'rating']], [['1917uniqueID919'], ['name', 'email@gmail.com', 'rating']], [['1917uniqueID919'], ['name', 'email@gmail.com', 'rating']] ];
+    const {selected, pending, approved, declined} = this.state;
+    let test = ['asfasfasfa', 'alsabfsanflanfa', 'pohwoianfnala'];
     switch(selected){
       case 'pending':
-        return this.renderCustomers(customers);
+        return this.renderCustomers(pending);
       case 'approved':
-        return this.renderCustomers(customers);
+        return this.renderCustomers(test);
       case 'declined':
-        return this.renderCustomers(customers);
+        return this.renderCustomers(declined);
     }
   }
 
   renderCustomers = (customerList) => {
-    return (
-      <FlatList
-        data = {customerList}
-        renderItem = { this.renderList }
-        keyExtractor = { () => 1}
-        contentContainerStyle={{margin:10}}
-      />
-    )
+    if (customerList.length === 0){
+      return (
+        <View style={{justifyContent:'center', alignItems:'center', marginTop:'50%' }} >
+          <Text style={{textAlign:'center', fontWeight:'bold', fontSize:25, padding:10, fontFamily:'Cochin' }} >No customers currently</Text>
+          <Image source={{uri:'http://cdn.onlinewebfonts.com/svg/img_548473.png'}} style={{width:100, aspectRatio:.9}} />
+          <Text style={{textAlign:'center', fontWeight:'bold', fontSize:25, padding:10, fontFamily:'Cochin'}} >Come back later</Text>
+        </View>
+      )
+    }
+    else{
+      return (
+        <FlatList
+          data = {customerList}
+          renderItem = { this.renderList }
+          keyExtractor = { (element) => element}
+          contentContainerStyle={{margin:10}}
+        />
+      )
+    }
   }
 
   renderList = (element) => {
@@ -68,8 +95,8 @@ class ManagerCustomers extends Component{
           return (
             <View style={{marginBottom: 10, marginHorizontal:10, flexDirection:'row'}} >
               <View style={{borderWidth:.5, width:'70%'}} >
-                <Text style={{padding:5,}} >{element.item[1][0]}</Text>
-                <Text style={{padding:5}} >{element.item[1][1]}</Text>
+                <Text style={{padding:5,}} >{element.item}</Text>
+                <Text style={{padding:5}} >{element.item}</Text>
               </View>
 
               <View style={{width:'30%', justifyContent:'center'}} >
@@ -88,19 +115,30 @@ class ManagerCustomers extends Component{
               </View>
             </View>
           )
-      default:
+      case 'approved':
           return (
             <View style={{marginBottom: 10, marginHorizontal:10, flexDirection:'row', borderWidth:.5}} >
               <View style={{width:'93%'}}>
-                <Text style={{padding:5,}} >{element.item[1][0]}</Text>
-                <Text style={{padding:5}} >{element.item[1][1]}</Text>
+                <Text style={{padding:5,}} >{element.item}</Text>
+                <Text style={{padding:5}} >{element.item}</Text>
               </View>
               <TouchableOpacity style={{justifyContent:'flex-start', alignItems:'flex-end', margin:5}} >
                 <Icon name='times' size={20} color='red' />
               </TouchableOpacity>
             </View>
-          )
-
+          );
+      case 'declined':
+          return (
+            <View style={{marginBottom: 10, marginHorizontal:10, flexDirection:'row', borderWidth:.5}} >
+              <View style={{width:'93%'}}>
+                <Text style={{padding:5,}} >{element.item}</Text>
+                <Text style={{padding:5}} >{element.item}</Text>
+              </View>
+              <TouchableOpacity style={{justifyContent:'flex-start', alignItems:'flex-end', margin:5}} >
+                <Icon name='times' size={20} color='red' />
+              </TouchableOpacity>
+            </View>
+          );
     }
     
   }
@@ -144,7 +182,11 @@ const styles = StyleSheet.create({
   }
 });
 
+const mapStateToProps = state => {
+  const {restaurant} = state.Auth;
+  return {restaurantID: restaurant};
+}
 
-export default ManagerCustomers;
+export default connect(mapStateToProps)(ManagerCustomers);
 
 

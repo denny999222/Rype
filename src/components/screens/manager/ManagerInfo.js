@@ -64,6 +64,7 @@ class ManagerInfo extends Component{
   }
 
   renderEmployeeList = (element, employeeType) => {
+    //console.log(element.item);
     let imgUrl = '';
     switch(employeeType){
       case 'cook':
@@ -193,12 +194,12 @@ class ManagerInfo extends Component{
           </View>
 
           <View style={{width:'100%', marginTop:10}} >
-            <Text>Cooks</Text>
+            <Text style={{fontWeight:'bold'}} >Cooks</Text>
             <View style={{flexDirection:'row', alignItems:'center', borderWidth:.5}} >
                 <FlatList
                     data={this.state.cook}
                     renderItem={ (element) => this.renderEmployeeList(element, 'cook') }
-                    keyExtractor={ () => tempKey++}
+                    keyExtractor={ (element) => element}
                     horizontal={true}
                 />
                 <TouchableOpacity onPress={() => this.setState({showAddEmployeeModal: true, employeeTypeSelected:'cook'})}> 
@@ -206,12 +207,12 @@ class ManagerInfo extends Component{
                 </TouchableOpacity>
             </View>
 
-            <Text>Delivery</Text>
+            <Text style={{fontWeight:'bold'}}>Delivery</Text>
             <View style={{flexDirection:'row', alignItems:'center', borderWidth:.5}} >
                 <FlatList
                     data={this.state.delivery}
                     renderItem={ (element) => this.renderEmployeeList(element, 'delivery') }
-                    keyExtractor={ () => tempKey++}
+                    keyExtractor={ (element) => element}
                     horizontal={true}
                 />
                 <TouchableOpacity onPress={() => this.setState({showAddEmployeeModal: true, employeeTypeSelected:'delivery'})}> 
@@ -219,12 +220,12 @@ class ManagerInfo extends Component{
                 </TouchableOpacity>
             </View>
             
-            <Text>Sales People</Text>
+            <Text style={{fontWeight:'bold'}}>Sales People</Text>
             <View style={{flexDirection:'row', alignItems:'center', borderWidth:.5}} >
                 <FlatList
                     data={this.state.salesperson}
                     renderItem={ (element) => this.renderEmployeeList(element, 'salesperson') }
-                    keyExtractor={ () => tempKey++}
+                    keyExtractor={ (element) => element}
                     horizontal={true}
                 />
                 <TouchableOpacity onPress={() => this.setState({showAddEmployeeModal: true, employeeTypeSelected:'salesperson'})}> 

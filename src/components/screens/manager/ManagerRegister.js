@@ -23,7 +23,8 @@ class ManagerRegister extends Component{
       phone:'',
       restaurantGrade: '',
       description: '',
-      error: ''
+      error: '',
+      photoUrl: ''
     }
   }
 
@@ -79,13 +80,17 @@ class ManagerRegister extends Component{
 
   renderPage = () => {
     const {Auth} = this.props;
-    const {name, address, phone, description} = this.state;
+    const {name, address, phone, description, photoUrl} = this.state;
     //if (Auth.restaurant === null || Auth.restaurant === undefined){//restaurant has not been added yet
       return (
         <ScrollView style={{paddingHorizontal:60}} >
           <Text style={{textAlign:'center', fontSize:25, fontWeight:'bold'}} > Restaurant Registry </Text>
 
-
+          <TextField
+            label="Restaurant Image URL" 
+            value={photoUrl} 
+            onChangeText={ (text) => this.onFieldChanged('photoUrl', text) }
+          />
           <TextField
             label="Restaurant Name" 
             value={name} 

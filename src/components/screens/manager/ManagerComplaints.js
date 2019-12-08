@@ -137,6 +137,10 @@ const styles = StyleSheet.create({
 });
 
 
-export default ManagerComplaints;
+const mapStateToProps = state => {
+    return {restaurantID: state.Auth.restaurant};
+}
+
+export default connect(mapStateToProps)(ManagerComplaints);
 
 
