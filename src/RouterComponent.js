@@ -53,8 +53,8 @@ class RouterComponent extends Component {
                     <Scene key='Login' component={Login} hideNavBar />
                     <Scene key='SignUp' component={SignUp} hideNavBar />
 
-                    <Scene key='customer' hideNavBar>
-                        <Scene key='CustomerHome' component={CustomerHome} hideNavBar />
+                    <Scene key='customer' initial={true} hideNavBar>
+                        <Scene key='CustomerHome' component={CustomerHome}  initial={true}  hideNavBar />
                         <Scene key='CustomerOrderReceived' component={CustomerOrderReceived} hideNavBar />
                         <Scene key='CustomerMenu' component={CustomerMenu} hideNavBar />
                         <Scene key='CustomerShoppingCart' component={CustomerShoppingCart} hideNavBar />
@@ -169,7 +169,7 @@ class RouterComponent extends Component {
                             icon={TabIcon}
                         />
                     </Scene>
-                    <Scene key='salesperson' initial={true} hideNavBar>
+                    <Scene key='salesperson' hideNavBar>
                         <Scene 
                             key='SalespersonHome' 
                             component={SalespersonHome} 
