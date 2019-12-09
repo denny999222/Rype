@@ -284,11 +284,7 @@ DEPENDENCIES:
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-<<<<<<< HEAD
   trunk:
-=======
-  https://github.com/CocoaPods/Specs.git:
->>>>>>> 16d736e445523bede6e9cf565ad14754c025cf91
     - boost-for-react-native
     - libwebp
     - QBImagePickerController

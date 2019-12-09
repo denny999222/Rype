@@ -65,16 +65,17 @@ class RouterComponent extends Component {
                         
                     </Scene>
                     <Scene key='ManagerRegister' component={ManagerRegister} keyColor='black' hideNavBar/>
-                    <Scene key='manager' activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
+                    <Scene key='manager'  activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} initial={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
                         <Scene 
                             key='ManagerInfo' 
-                            component={ManagerHome} 
+                            component={ManagerHome}
                             hideNavBar 
                             keyColor='black'
                             iconName='utensils'
                             iconColor='white'
                             iconSize={24}
                             icon={TabIcon}
+                           
                         />
                         <Scene 
                             key='Bidding' 
@@ -85,6 +86,7 @@ class RouterComponent extends Component {
                             iconColor='white'
                             iconSize={24}
                             icon={TabIcon}
+                            initial={true}
                         />
                         <Scene 
                             key='Orders' 
@@ -159,7 +161,7 @@ class RouterComponent extends Component {
                             icon={TabIcon}
                         />
                     </Scene>
-                    <Scene key='salesperson' initial={true}  hideNavBar>
+                    <Scene key='salesperson' hideNavBar>
                         <Scene 
                             key='SalespersonHome' 
                             component={SalespersonHome} 
