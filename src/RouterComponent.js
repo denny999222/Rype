@@ -12,6 +12,8 @@ import CustomerPreviousOrders from './components/screens/customer/CustomerPrevio
 import CustomerDeliveryComplain from './components/screens/customer/CustomerDeliveryComplain';
 import CustomerRateFood from './components/screens/customer/CustomerRateFood';
 import CustomerFoodComplain from './components/screens/customer/CustomerFoodComplain';
+import CustomerProfile from './components/screens/customer/CustomerProfile';
+import RestaurantInfo from './components/screens/customer/RestaurantInfo'
 import ManagerHome from './components/screens/manager/ManagerHome';
 import ManagerRegister from './components/screens/manager/ManagerRegister';
 import DeliveryHome from './components/screens/delivery/DeliveryHome';
@@ -49,20 +51,50 @@ class RouterComponent extends Component {
                     <Scene key='Login' component={Login} hideNavBar />
                     <Scene key='SignUp' component={SignUp} hideNavBar />
 
-                    <Scene key='customer' hideNavBar>
-                        <Scene key='CustomerHome' component={CustomerHome} hideNavBar />
-                        <Scene key='CustomerOrderReceived' component={CustomerOrderReceived} hideNavBar />
-                        <Scene key='CustomerMenu' component={CustomerMenu} hideNavBar />
-                        <Scene key='CustomerShoppingCart' component={CustomerShoppingCart} hideNavBar />
-                        <Scene key='CustomerPreviousOrders' component={CustomerPreviousOrders} hideNavBar />
-                        <Scene key='CustomerDeliveryComplain' component={CustomerDeliveryComplain} hideNavBar />
-                        <Scene key='CustomerRateFood' component={CustomerRateFood} hideNavBar />
-                        <Scene key='CustomerFoodComplain' component={CustomerFoodComplain} hideNavBar />
-
-
-                        
+                    <Scene key='customer' activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
+                        <Scene 
+                            key='CustomerHome' 
+                            component={CustomerHome} 
+                            hideNavBar 
+                            keyColor='black'
+                            iconName='home'
+                            iconColor='white'
+                            iconSize={24}
+                            icon = {TabIcon}
+                        />
+                        <Scene 
+                            key='CustomerShoppingCart' 
+                            component={CustomerShoppingCart} 
+                            hideNavBar 
+                            keyColor='black'
+                            iconName='shopping-cart'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon}
+                        />
+                        <Scene 
+                            key='CustomerProfile' 
+                            component={CustomerProfile} 
+                            hideNavBar 
+                            keyColor='black'
+                            iconName='user-circle'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon}
+                        />
+                    
                     </Scene>
+                    <Scene key='RestaurantInfo' component={RestaurantInfo} hideNavBar hideTabBar/>
+
+                    <Scene key='CustomerOrderReceived' component={CustomerOrderReceived} hideNavBar hideTabBar/>
+                    <Scene key='CustomerMenu' component={CustomerMenu} hideNavBar hideTabBar/>
+                    <Scene key='CustomerShoppingCart' component={CustomerShoppingCart} hideNavBar hideTabBar/>
+                    <Scene key='CustomerPreviousOrders' component={CustomerPreviousOrders} hideNavBar hideTabBar/>
+                    <Scene key='CustomerDeliveryComplain' component={CustomerDeliveryComplain} hideNavBar hideTabBar/>
+                    <Scene key='CustomerRateFood' component={CustomerRateFood} hideNavBar hideTabBar/>
+                    <Scene key='CustomerFoodComplain' component={CustomerFoodComplain} hideNavBar hideTabBar/>
                     <Scene key='ManagerRegister' component={ManagerRegister} keyColor='black' hideNavBar/>
+
                     <Scene key='manager' activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
                         <Scene 
                             key='ManagerInfo' 
