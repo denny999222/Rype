@@ -89,7 +89,7 @@ class DeliveryHome extends Component{
             <View style={{width: '33%'}}>
             <Image source={{uri:'https://sachdevasweets.com/img/placeholders/xgrey_fork_and_knife.png,qv=1.pagespeed.ic.w93dy8J8rD.png'}}  style={{width:'40%', aspectRatio:1, alignSelf:'center'}} />
             <Button 
-              onPress={() => this.onAdd()}  
+              onPress={() => Actions.DeliveryBid()}  
               containerStyle={{bottom:0}}
               style={{backgroundColor:'#6f2da8', padding:10, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} 
               > 
@@ -99,7 +99,7 @@ class DeliveryHome extends Component{
             <View style={{width: '33%'}}>
             <Image source={{uri:'https://sachdevasweets.com/img/placeholders/xgrey_fork_and_knife.png,qv=1.pagespeed.ic.w93dy8J8rD.png'}}  style={{width:'40%', aspectRatio:1, alignSelf:'center'}} />
             <Button 
-              onPress={() => this.onAdd()}  
+              onPress={() => Actions.DeliveryBid()}  
               containerStyle={{bottom:0}}
               style={{backgroundColor:'#6f2da8', padding:10, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} 
               > 
@@ -109,7 +109,7 @@ class DeliveryHome extends Component{
             <View style={{width: '33%'}}>
             <Image source={{uri:'https://sachdevasweets.com/img/placeholders/xgrey_fork_and_knife.png,qv=1.pagespeed.ic.w93dy8J8rD.png'}}  style={{width:'40%', aspectRatio:1, alignSelf:'center'}} />
             <Button 
-              onPress={() => this.onAdd()}  
+              onPress={() => Actions.DeliveryBid()}  
               containerStyle={{bottom:0}}
               style={{backgroundColor:'#6f2da8', padding:10, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} 
               > 
@@ -119,7 +119,7 @@ class DeliveryHome extends Component{
           </View>
 
           <Button 
-              onPress={() => this.onAdd()}  
+              onPress={() => Actions.DeliveryBidList()}  
               containerStyle={{bottom:0}}
               style={{backgroundColor:'#66a82d', padding:10, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} 
               > 

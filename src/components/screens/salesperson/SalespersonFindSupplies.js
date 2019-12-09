@@ -68,7 +68,13 @@ class SalespersonFindSupplies extends Component{
               })
           }
           </View>
-
+          <Button
+            onPress = {() => Actions.SalespersonHome()}
+            containerStyle={{bottom:0}}
+            style={{
+            fontSize:20}}>
+            Go Back to Home
+          </Button>
 
 
 

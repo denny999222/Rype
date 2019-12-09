@@ -69,7 +69,7 @@ class CookHome extends Component{
           
           {/* Might want to add the <Keyboard> tags that are in Home */}
               <Button 
-                  onPress={() => this.onMenu()} 
+                  onPress={() => Actions.CookMenuList()} 
                   containerStyle={{bottom:0}}
                   style={{borderRadius:20, overflow:'hidden', backgroundColor:'#66a82d', padding:10, paddingLeft: 50, paddingRight: 50, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} 
               > 
@@ -81,7 +81,7 @@ class CookHome extends Component{
           
           {/* Might want to add the <Keyboard> tags that are in Home */}
               <Button 
-                  onPress={() => this.onSupply()} 
+                  onPress={() => Actions.CookIngredientList()} 
                   containerStyle={{bottom:0}}
                   style={{borderRadius:20, overflow:'hidden', backgroundColor:'#66a82d', padding:10, paddingLeft: 50, paddingRight: 50, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} 
               > 

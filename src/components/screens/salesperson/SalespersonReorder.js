@@ -55,14 +55,7 @@ class SalespersonOrder extends Component {
             <SafeAreaView style={styles.container}> 
 
                 <View style={{justifyContent:'center'}} >
-                    <Text style={{fontSize: 30, textAlign: 'center'}}>Order {this.state.name}</Text>
-                    <View style={{paddingRight:50, paddingLeft:50, paddingTop:10}} >
-                        <TextField 
-                            label="Negotiate Price" 
-                            value = {this.state.price}
-                            onChangeText={(text) => this.onFieldChanged('price', text) }
-                        />
-                    </View>
+                    <Text style={{fontSize: 30, textAlign: 'center'}}>Reorder {this.state.name}</Text>
 
                     <View style={{paddingRight:50, paddingLeft:50, paddingTop:10}} >
                         <TextField 
@@ -77,7 +70,7 @@ class SalespersonOrder extends Component {
                         containerStyle={{bottom:0}}
                         style={{backgroundColor:'#6f2da8', padding:8, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} 
                     > 
-                        Negotiate
+                        Reorder
                     </Button>
                     
             </View>

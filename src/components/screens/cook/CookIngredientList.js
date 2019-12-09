@@ -134,7 +134,7 @@ class CookIngredientList extends Component{
             
                     {/* Might want to add the <Keyboard> tags that are in Home */}
                 <Button 
-                    onPress={() => this.onRequest()} 
+                    onPress={() => Actions.CookIngredientRequest()} 
                     containerStyle={{bottom:0}}
                     style={{borderRadius:20, overflow:'hidden', backgroundColor:'#66a82d', padding:10, paddingLeft: 50, paddingRight: 50, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} 
                 > 

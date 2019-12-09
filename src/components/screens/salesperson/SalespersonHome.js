@@ -73,7 +73,7 @@ class SalespersonHome extends Component{
                           </View>
                           <View style={{ width: '25%'}}>
                             <Button
-                              onPress = {this.onOrder()}
+                              onPress = {() => Actions.SalespersonReorder()}
                               containerStyle={{bottom:0}}
                               style={{
                       fontSize:20}}>
@@ -117,7 +117,7 @@ class SalespersonHome extends Component{
                             </View>
                             <View style={{ width: '33%'}}>
                               <Button
-                                onPress = {this.onOrder()}
+                                onPress = {() => Actions.SalespersonOrder()}
                                 containerStyle={{bottom:0}}
                                 style={{
                         fontSize:20}}>
@@ -131,11 +131,11 @@ class SalespersonHome extends Component{
             }
             </View>
             <Button
-              onPress = {this.onFindSupplies()}
+              onPress = {() => Actions.SalespersonFindSupplies()}
               containerStyle={{bottom:0}}
               style={{
                       fontSize:20}}>
-              Find Supploes
+              Find Supplies
             </Button>
 
 
