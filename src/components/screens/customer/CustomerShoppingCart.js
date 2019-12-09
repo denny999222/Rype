@@ -3,7 +3,7 @@ import {Actions} from 'react-native-router-flux';
 import Button from 'react-native-button';
 import { StyleSheet, SafeAreaView, Text, View, FlatList} from 'react-native';
 import firebase from 'firebase';
-import {SectionList} from '../../common/components/';
+import {SectionList, Header} from '../../common/components/';
 
 
 class CustomerShoppingCart extends Component {
@@ -44,9 +44,12 @@ class CustomerShoppingCart extends Component {
     render(){
         return(
             <SafeAreaView style={styles.container}>
-            <View style={{justifyContent: 'center'}}>
-                <Text style={{fontSize: 35, textAlign: 'center'}}>Shopping Cart</Text>
-            </View>
+            <Header 
+                name='Shopping Cart' 
+                contentStyle={{fontSize:30, color:'white', fontWeight:'bold'}} 
+                containerStyle={{backgroundColor:'#188a32'}}
+                leftButton={<View/>} 
+            />
             <Text style={{marginVertical: 20}}> </Text>
 
             {/* This is the list of items that the cook currently has on the menu! */}

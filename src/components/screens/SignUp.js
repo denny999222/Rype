@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import {Header} from '../common/components';
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
-
+import ManagerRegister from './manager/ManagerRegister';
 
 
 class SignUp extends Component{
@@ -39,7 +39,7 @@ class SignUp extends Component{
                 // it will re reoute them to different pages
                 switch (accountType) {
                     case 'manager':
-                        Actions.manager();
+                        Actions.ManagerRegister();
                         break;
                     case 'customer':
                         Actions.customer();

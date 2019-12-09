@@ -26,6 +26,7 @@ class ManagerInfo extends Component{
       rating:0,
       restaurantGrade:'',
       restaurantID:'',
+      photoUrl: '',
 
       showAddEmployeeModal: false,
       email: '',
@@ -43,7 +44,7 @@ class ManagerInfo extends Component{
     const {restaurant} = this.props.Auth;
     await firebase.database().ref(`/restaurants/${restaurant}`).on('value', snapshot => {
       // also need to fetch for cooks, delivery, salespeople and create an array with it
-      let {address, amountOfRatings, description, manager, name, phone, rating, restaurantGrade, cook, delivery, salesperson} = snapshot.val();
+      let {address, amountOfRatings, description, manager, name, phone, rating, restaurantGrade, cook, delivery, salesperson, photoUrl} = snapshot.val();
 
       this.setState({
         address: address,
@@ -55,6 +56,7 @@ class ManagerInfo extends Component{
         rating: rating,
         restaurantGrade: restaurantGrade,
         restaurantID: snapshot.key,
+        photoUrl: photoUrl,
 
         cook: Object.keys(cook),
         delivery: Object.keys(delivery),
@@ -171,11 +173,11 @@ class ManagerInfo extends Component{
 
   render(){
     let tempKey = 0;
-    const {address, amountOfRatings, description, manager, name, phone, rating, restaurantGrade} = this.state;
+    const {address, amountOfRatings, description, manager, name, phone, rating, restaurantGrade, photoUrl} = this.state;
     return (
       <SafeAreaView style={styles.container} >
           <View style={{flexDirection:'row', padding:10}} >
-            <Image source={{uri:'https://icon-library.net/images/restaurant-icon-transparent/restaurant-icon-transparent-0.jpg'}} style={{width:'25%', aspectRatio:1, marginRight:5}} />
+            <Image source={{uri:photoUrl}} style={{width:'25%', aspectRatio:1, marginRight:5}} />
             <View style={{flexDirection:'row', alignItems:'center'}} >
                 <View style={{flexDirection:'column', justifyContent:'space-between', marginLeft:10}} >
                     <View>
@@ -188,7 +190,7 @@ class ManagerInfo extends Component{
             </View>          
           </View>
           
-          <View style={{margin:10, borderBottomWidth:.5,  padding:10}}>
+          <View style={{marginHorizontal:10, borderBottomWidth:.5,  padding:10}}>
             <Text style={{fontWeight:'bold', fontSize:16}} >Description </Text>
             <Text>{description}</Text>
           </View>

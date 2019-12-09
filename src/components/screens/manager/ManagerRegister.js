@@ -55,9 +55,9 @@ class ManagerRegister extends Component{
     // gets the current user's ID, which in this case is the manager's ID
     const {currentUser} = firebase.auth(); 
     // gets the manager's input and uses it to save onto database
-    const {name, address, phone, restaurantGrade, description} = this.state;
+    const {name, address, phone, restaurantGrade, description, photoUrl} = this.state;
     // creates a new restaurant with the given information and pushes it onto database
-    if (name !== "" || address !== "" || phone !== "" || restaurantGrade !== "" || description !== "" ){
+    if (name !== "" || address !== "" || phone !== "" || restaurantGrade !== "" || description !== "" || photoUrl !== ""){
         let restID = await firebase.database().ref(`/restaurants/`).push({
           name: name,
           address: address,
@@ -66,7 +66,8 @@ class ManagerRegister extends Component{
           description: description,
           rating : 0,
           amountOfRatings: 0,
-          manager: currentUser.uid
+          manager: currentUser.uid,
+          photo: photoUrl
         }).key;
     
       await firebase.database().ref(`/users/${currentUser.uid}`).update({restaurant: restID});
