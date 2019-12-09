@@ -53,13 +53,13 @@ class RouterComponent extends Component {
                     <Scene key='Login' component={Login} hideNavBar />
                     <Scene key='SignUp' component={SignUp} hideNavBar />
 
-                    <Scene key='customer' initial={true} hideNavBar>
-                        <Scene key='CustomerHome' component={CustomerHome}  initial={true}  hideNavBar />
-                        <Scene key='CustomerOrderReceived' component={CustomerOrderReceived} hideNavBar />
+                    <Scene key='customer' hideNavBar>
+                        <Scene key='CustomerHome' component={CustomerHome}  hideNavBar />
+                        <Scene key='CustomerOrderReceived' component={CustomerOrderReceived}  hideNavBar />
                         <Scene key='CustomerMenu' component={CustomerMenu} hideNavBar />
                         <Scene key='CustomerShoppingCart' component={CustomerShoppingCart} hideNavBar />
                         <Scene key='CustomerPreviousOrders' component={CustomerPreviousOrders} hideNavBar />
-                        <Scene key='CustomerDeliveryComplain' component={CustomerDeliveryComplain} hideNavBar />
+                        <Scene key='CustomerDeliveryComplain'  component={CustomerDeliveryComplain} hideNavBar />
                         <Scene key='CustomerRateFood' component={CustomerRateFood} hideNavBar />
                         <Scene key='CustomerFoodComplain' component={CustomerFoodComplain} hideNavBar />
 
@@ -100,13 +100,13 @@ class RouterComponent extends Component {
                             icon={TabIcon}
                         />
                     </Scene>
-                    <Scene key='cook' hideNavBar>
-                        <Scene key='CookHome' component={CookHome} hideNavBar />
+                    <Scene key='cook'  initial={true} hideNavBar>
+                        <Scene key='CookHome' component={CookHome}  hideNavBar />
                         <Scene key='CookIngredientList' component={CookIngredientList} hideNavBar />
-                        <Scene key='CookIngredientRequest' component={CookIngredientRequest} hideNavBar />
+                        <Scene key='CookIngredientRequest'  component={CookIngredientRequest} hideNavBar />
                         <Scene key='CookComplain' component={CookComplain} hideNavBar />
                         <Scene key='CookMenuList' component={CookMenuList} hideNavBar />
-                        <Scene key='CookAddFoodItem' component={CookAddFoodItem} hideNavBar />
+                        <Scene key='CookAddFoodItem' component={CookAddFoodItem}  initial={true} hideNavBar />
 
                     </Scene>
                     <Scene key='delivery' hideNavBar>
