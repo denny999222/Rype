@@ -55,7 +55,7 @@ class SalespersonFindSupplies extends Component{
 
                           <View style={{ width: '25%'}}>
                             <Button
-                              onPress = {this.onOrder()}
+                              onPress = {() => Actions.SalespersonOrder()}
                               containerStyle={{bottom:0}}
                               style={{
                       fontSize:20}}>

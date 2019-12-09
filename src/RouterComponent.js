@@ -185,7 +185,6 @@ class RouterComponent extends Component {
                             key='SalespersonReorder' 
                             component={SalespersonReorder} 
                             hideNavBar
-                           
                         />
                         <Scene 
                             key='SalespersonFindSupplies' 
