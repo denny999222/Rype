@@ -16,7 +16,7 @@ class CookAddFoodItem extends Component {
             price: '20', 
             specialty: '',
             Food_Description : 'N/A' ,
-            ingredientList: [{name:'salt', quantity:''}, {name:'pepper', rating:''}],
+            ingredientList: [{name:'salt', quantity:'0'}, {name:'pepper', quantity:'0'}],
             food_category: ''
         }
     }
@@ -65,7 +65,7 @@ class CookAddFoodItem extends Component {
             <SafeAreaView style={styles.container}> 
 
                 <View style={{justifyContent:'center'}} >
-                    <Text style={{fontSize: 30, textAlign: 'center'}}>Add Food Item</Text>
+                    <Text style={{fontSize: 30, textAlign: 'center'}}>New Food Form</Text>
                     <View style={{paddingRight:50, paddingLeft:50, paddingTop:10}} >
                         <TextField 
                             label="Name" 
@@ -84,24 +84,26 @@ class CookAddFoodItem extends Component {
                         />
                     </View>
 
+                    <Text style={{marginVertical: 18}}>   </Text>
 
-                    <View style={{marginVertical: 10}}>
-
-                        <View style={{marginHorizontal: 10, flexDirection: 'row', flexWrap: 'wrap', borderWidth: 1, padding: 7, backgroundColor:'#66a82d'}}>
+                    {/** The title page remains stationary */}
+                    <View style={{marginHorizontal: 50, flexDirection: 'row', flexWrap: 'wrap', borderWidth: 0.3, padding: 7, backgroundColor:'#70a1ff'}}>
                             <View style={{ textAlign: 'center', width: '33%'}}>
-                                <Text style={{color:'white', textAlign: 'center', fontSize: 20}}>Ingredient</Text>
+                                <Text style={{ textAlign: 'center', fontSize: 20}}>Ingredient</Text>
                             </View>
                             <View style={{ width: '33%'}}>
-                                <Text style={{color:'white', textAlign: 'center', fontSize: 20}}>Quantity</Text> 
+                                <Text style={{ textAlign: 'center', fontSize: 20}}>Quantity</Text> 
                             </View>
                             <View style={{ width: '33%'}}>
                                 <Text style={{color:'white', textAlign: 'center'}}>  </Text> 
                             </View>
                         </View>
+                    {/** The user can scroll through the list of all the ingredeints */}
+                    <ScrollView>
                         {
                             this.state.ingredientList.map( (ingredient) =>{
                                 return ( 
-                                    <View style={{marginHorizontal: 10, flexDirection: 'row', flexWrap: 'wrap', borderWidth: 1, padding: 3}}>
+                                    <View style={{marginHorizontal: 50, flexDirection: 'row', flexWrap: 'wrap', borderWidth: 0.3, padding: 3}}>
                                         <View style={{ textAlign: 'center', width: '33%'}}>
                                             <Text
                                             style={{textAlign: 'center', marginTop:20, alignSelf:'center', padding:10, fontSize: 20}}>{ingredient.name} </Text>
@@ -115,7 +117,7 @@ class CookAddFoodItem extends Component {
                                             <Button 
                                                 onPress={() => this.onAdd()}  
                                                 containerStyle={{bottom:0}}
-                                                style={{backgroundColor:'#00cccc', padding:10, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} 
+                                                style={{fontSize: 18, borderRadius: 15, overflow: 'hidden', backgroundColor:'#7bed9f', padding:10, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} 
                                             > 
                                                 Add
                                                 </Button>
@@ -126,7 +128,7 @@ class CookAddFoodItem extends Component {
                             })
                         }
 
-                        </View>
+                        </ScrollView>
 
 
 
@@ -137,11 +139,11 @@ class CookAddFoodItem extends Component {
 
 
 
+                        <Text style={{marginVertical: 20}}>  </Text>
 
-
-
-                    <View style={{flexDirection:'row', alignSelf:'center'}} >
                         <Text style={{fontSize: 18}}>Specialty:   </Text>
+                    <View style={{flexDirection:'row', alignSelf:'center'}} >
+                        
                         <TouchableOpacity onPress={() => this.setState({food_category:'Breakfast'}) } style={this.onGradeSelected('Breakfast')} >
                             <Text style={this.onTextColorChange('Breakfast')} >  Breakfast  </Text>
                         </TouchableOpacity>
@@ -159,11 +161,12 @@ class CookAddFoodItem extends Component {
                         </TouchableOpacity>
                     </View>
 
+                    <Text style={{marginVertical: 10}}></Text>
 
                     <Button 
                         onPress={() => this.onSubmit()} 
                         containerStyle={{bottom:0}}
-                        style={{backgroundColor:'#6f2da8', padding:8, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} 
+                        style={{borderRadius: 20, overflow:'hidden', backgroundColor:'#3742fa', padding:8, paddingHorizontal: 100, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} 
                     > 
                         Submit
                     </Button>

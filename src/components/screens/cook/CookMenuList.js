@@ -162,7 +162,7 @@ class CookMenuList extends Component {
 
                 </View>
                 <Button 
-                    onPress={() => this.addFoodItem()}  
+                    onPress={() => Actions.CookAddFoodItem()}  
                     containerStyle={{bottom:0}}
                     style={{backgroundColor:'#66a82d', padding:10, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} 
                 > 
