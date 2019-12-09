@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
 import {Actions} from 'react-native-router-flux';
 import Button from 'react-native-button';
-import { StyleSheet, SafeAreaView, Text, View, TouchableOpacity, ScrollView, Image, KeyboardAvoidingView} from 'react-native'; //default components
+import { StyleSheet, SafeAreaView, Text, View, TouchableOpacity, ScrollView, Image, Dimensions} from 'react-native'; //default components
 import ImagePicker from 'react-native-image-crop-picker'; // this another dependency for photo gallery
 import firebase from 'firebase';
-import RNFetchBlob from 'rn-fetch-blob'
+import {Header} from '../../common/components';
+import RNFetchBlob from 'rn-fetch-blob';
+import MapViewDirections from 'react-native-maps-directions';
+import MapView from 'react-native-maps';
 
+//AIzaSyD6fy4fDNly-V8rcpnSagEARnTd86m8fMM
 class CustomerHome extends Component{
 
   constructor(){
@@ -76,16 +80,34 @@ class CustomerHome extends Component{
   onAdd = () => {
 
   }
+  //
 
 
 
   render(){
+    const { width, height } = Dimensions.get('window');
+    const ASPECT_RATIO = width / height;
+    const origin = {latitude: 37.3318456, longitude: -122.0296002};
+    const destination = {latitude: 37.771707, longitude: -122.4053769};
+    const GOOGLE_MAPS_APIKEY = 'AIzaSyD6fy4fDNly-V8rcpnSagEARnTd86m8fMM';
     return (
-      <SafeAreaView style={styles.container} >
-          <Text style={{fontSize:30, textAlign: 'center', marginVertical: 10}} > CUSTOMER HOME! </Text>
-          <View style={{marginHorizontal: 15}}>
-            <Image source={{uri:'https://i.stack.imgur.com/JHHER.png'}}  style={{ width:'100%', aspectRatio:1, alignSelf:'center'}} />
-          </View>
+      <ScrollView style={styles.container} >
+          
+          <MapView 
+            initialRegion={{
+              latitude: 37.771707,
+              longitude: -122.4053769,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0922*ASPECT_RATIO,
+            }}
+            style={{width:'90%', aspectRatio:1, alignSelf:'center'}}
+          >
+            <MapViewDirections
+              origin={origin}
+              destination={destination}
+              apikey={GOOGLE_MAPS_APIKEY}
+            />
+          </MapView>
           <Text style={{fontSize:20, textAlign: 'center', marginVertical: 10}}>Top 3 Foods</Text>
           <View style={{marginHorizontal: 10, flexDirection: 'row', flexWrap: 'wrap', padding: 7}}>
             <View style={{width: '33%'}}>
@@ -161,7 +183,7 @@ class CustomerHome extends Component{
           {/*this.renderImage()*/}
 
 
-      </SafeAreaView>
+      </ScrollView>
     );
   }
   
@@ -170,7 +192,8 @@ class CustomerHome extends Component{
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    paddingVertical:40
   }
 });
 

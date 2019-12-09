@@ -44,15 +44,6 @@ class SignUp extends Component{
                     case 'customer':
                         Actions.customer();
                         break;
-                    case 'delivery':
-                        Actions.delivery();
-                        break;
-                    case 'cook':
-                        Actions.cook();
-                        break;
-                    case 'salesperson':
-                        Actions.salesperson();
-                        break;
                 }    
             }
         }).catch( (error) => {
@@ -98,17 +89,8 @@ class SignUp extends Component{
                     <TouchableOpacity onPress={() => this.setState({accountType:'manager'}) } style={this.onAccountSelected('manager')} >
                         <Text style={this.onTextColorChange('manager')} >  Manager </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.setState({accountType:'salesperson'}) } style={this.onAccountSelected('salesperson')} >
-                        <Text style={this.onTextColorChange('salesperson')} >  Salesperson </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.setState({accountType:'cook'}) } style={this.onAccountSelected('cook')} >
-                        <Text style={this.onTextColorChange('cook')} >  Cook </Text>
-                    </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.setState({accountType:'customer'}) } style={this.onAccountSelected('customer')} >
                         <Text style={this.onTextColorChange('customer')} >  Customer </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.setState({accountType:'delivery'}) } style={this.onAccountSelected('delivery')} >
-                        <Text style={this.onTextColorChange('delivery')} >  Delivery </Text>
                     </TouchableOpacity>
                 </View>
             </View>

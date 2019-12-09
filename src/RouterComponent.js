@@ -161,7 +161,11 @@ class RouterComponent extends Component {
                             icon={TabIcon}
                         />
                     </Scene>
+<<<<<<< HEAD
                     <Scene key='salesperson' hideNavBar>
+=======
+                    <Scene key='salesperson'  hideNavBar>
+>>>>>>> c6c43cd3dfcdbc2f7358adadce2175c74d795bd4
                         <Scene 
                             key='SalespersonHome' 
                             component={SalespersonHome} 
