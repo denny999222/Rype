@@ -20,12 +20,14 @@ class ManagerRegister extends Component{
     this.state = {
       name: '',
       address: '',
-      photo:'',
       phone:'',
-      restaurantGrade: 'N/A',
-      description: ''
+      restaurantGrade: '',
+      description: '',
+      error: '',
+      photoUrl: ''
     }
   }
+
 
   onFieldChanged = (state, text) => {
     //this is a function inherited from Component. It simply modifies one of the properties inside state
@@ -33,7 +35,7 @@ class ManagerRegister extends Component{
   }
 
   onGradeSelected = (selectedType) => {// this makes the selected letter grade green when selected
-    if (selectedType === this.state.accountType){
+    if (selectedType === this.state.restaurantGrade){
         return {backgroundColor:'#188a32', borderWidth:.5,justifyContent: 'center'}
     }else{
         return {backgroundColor:'white', borderWidth:.5, justifyContent: 'center'}
@@ -41,46 +43,11 @@ class ManagerRegister extends Component{
   }
 
   onTextColorChange = (selectedType) => {
-      if (selectedType === this.state.accountType){
+      if (selectedType === this.state.restaurantGrade){
           return {color:'white', paddingBottom:5, paddingTop:5, fontWeight:'bold'}
       }else{
           return {color:'black', paddingBottom:5, paddingTop:5}
       }
-  }
-
-  pickImage = () => {
-    ImagePicker.openPicker({
-      width: 300,
-      height: 400,
-      cropping: true
-    }).then(image => {
-      this.setState({photo: image.path});
-    });
-  } 
-
-
-  renderImage = () => {
-    const {photo} = this.state;
-    if (photo !== ''){
-      return (
-        <TouchableOpacity onPress={() => this.pickImage()} >
-          <Image source={{uri: photo}} style={{width:'40%', aspectRatio:1, alignSelf:'center', marginBottom:5}}/>
-          <View style={{borderWidth:.3, backgroundColor:'#188a32', }} >
-            <Text style={{textAlign:'center', fontWeight:'bold', fontSize:13, color:'white'}} > Change Photo </Text>
-          </View>
-        </TouchableOpacity>
-      )
-    }
-    else{
-      return (
-        <TouchableOpacity onPress={() => this.pickImage()} >
-          <Image source={{uri:'https://sachdevasweets.com/img/placeholders/xgrey_fork_and_knife.png,qv=1.pagespeed.ic.w93dy8J8rD.png'}}  style={{width:'40%', aspectRatio:1, alignSelf:'center'}} />
-          <View style={{borderWidth:.3, backgroundColor:'#188a32', }} >
-            <Text style={{textAlign:'center', fontWeight:'bold', fontSize:13, color:'white'}} > Add Photo </Text>
-          </View>
-        </TouchableOpacity>
-      )
-    }
   }
 
   // NOT SURE IF WORKS YET NEED TO TEST
@@ -88,33 +55,43 @@ class ManagerRegister extends Component{
     // gets the current user's ID, which in this case is the manager's ID
     const {currentUser} = firebase.auth(); 
     // gets the manager's input and uses it to save onto database
-    const {name, address, photo, phone, restaurantGrade, description} = this.state;
+    const {name, address, phone, restaurantGrade, description, photoUrl} = this.state;
     // creates a new restaurant with the given information and pushes it onto database
-    let restID = await firebase.database().ref(`/restaurants/`).push({
-      name: name,
-      address: address,
-      phone: phone,
-      photo: photo,
-      restaurantGrade: restaurantGrade,
-      description: description,
-      rating : 0,
-      amountOfRatings: 0,
-      manager: currentUser.uid
-    })
-
-    await firebase.database().ref(`/users/${currentUser.uid}`).set({restaurant: restID.name()});
+    if (name !== "" || address !== "" || phone !== "" || restaurantGrade !== "" || description !== "" || photoUrl !== ""){
+        let restID = await firebase.database().ref(`/restaurants/`).push({
+          name: name,
+          address: address,
+          phone: phone,
+          restaurantGrade: restaurantGrade,
+          description: description,
+          rating : 0,
+          amountOfRatings: 0,
+          manager: currentUser.uid,
+          photo: photoUrl
+        }).key;
+    
+      await firebase.database().ref(`/users/${currentUser.uid}`).update({restaurant: restID});
+      // still need to add restaurant info to redux state
+      Actions.manager();
+    }else{
+      this.setState({error: 'Please fill in everything correctly!'})
+    }
+    
   }
 
   renderPage = () => {
     const {Auth} = this.props;
-    const {name, address, phone, description} = this.state;
+    const {name, address, phone, description, photoUrl} = this.state;
     //if (Auth.restaurant === null || Auth.restaurant === undefined){//restaurant has not been added yet
       return (
         <ScrollView style={{paddingHorizontal:60}} >
           <Text style={{textAlign:'center', fontSize:25, fontWeight:'bold'}} > Restaurant Registry </Text>
 
-          {this.renderImage()}
-
+          <TextField
+            label="Restaurant Image URL" 
+            value={photoUrl} 
+            onChangeText={ (text) => this.onFieldChanged('photoUrl', text) }
+          />
           <TextField
             label="Restaurant Name" 
             value={name} 
@@ -134,35 +111,34 @@ class ManagerRegister extends Component{
             multiline
             label="Description" 
             value={description} 
-            onChangeText={(text) => this.onFieldChanged('phone', text) }
+            onChangeText={(text) => this.onFieldChanged('description', text) }
           />
 
           <Text style={{textAlign:'center', fontWeight:'bold'}} > Letter Grade </Text>
           <View style={{flexDirection:'row', alignSelf:'center'}} >
-              <TouchableOpacity onPress={() => this.setState({accountType:'A'}) } style={this.onGradeSelected('A')} >
+              <TouchableOpacity onPress={() => this.setState({restaurantGrade:'A'}) } style={this.onGradeSelected('A')} >
                   <Text style={this.onTextColorChange('A')} >  A </Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.setState({accountType:'B'}) } style={this.onGradeSelected('B')} >
+              <TouchableOpacity onPress={() => this.setState({restaurantGrade:'B'}) } style={this.onGradeSelected('B')} >
                   <Text style={this.onTextColorChange('B')} >  B </Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.setState({accountType:'C'}) } style={this.onGradeSelected('C')} >
+              <TouchableOpacity onPress={() => this.setState({restaurantGrade:'C'}) } style={this.onGradeSelected('C')} >
                   <Text style={this.onTextColorChange('C')} >  C </Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.setState({accountType:'N/A'}) } style={this.onGradeSelected('N/A')} >
+              <TouchableOpacity onPress={() => this.setState({restaurantGrade:'N/A'}) } style={this.onGradeSelected('N/A')} >
                   <Text style={this.onTextColorChange('N/A')} >  N/A </Text>
               </TouchableOpacity>
           </View>
 
+          <Text style={{textAlign:'center', color:'red', marginTop:10}} > {this.state.error} </Text>
 
-          <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null}>
-            <Button 
-              onPress={() => this.registerRestaurant()} 
-              containerStyle={{bottom:0}}
-              style={{backgroundColor:'#188a32', padding:8, color:'white', fontWeight:'bold', marginTop:30, alignSelf:'center'}} 
-            > 
-              Register Restaurant
-            </Button>
-          </KeyboardAvoidingView>
+          <Button 
+            onPress={() => this.registerRestaurant()} 
+            containerStyle={{bottom:0}}
+            style={{backgroundColor:'#188a32', padding:8, color:'white', fontWeight:'bold', marginTop:15, alignSelf:'center'}} 
+          > 
+            Register Restaurant
+          </Button>
         </ScrollView>
       )
     //}

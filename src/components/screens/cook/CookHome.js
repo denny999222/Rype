@@ -3,16 +3,22 @@ import {Actions} from 'react-native-router-flux';
 import Button from 'react-native-button';
 import { StyleSheet, SafeAreaView, Text, View, FlatList} from 'react-native';
 import firebase from 'firebase';
+import { connect } from 'react-redux';
 import {SectionList} from '../../common/components/';
+import {Header} from '../../common/components';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import Modal from "react-native-modal";
+import CookAddFoodItem from './CookAddFoodItem';
+import CookComplain from './CookComplain';
+import CookIngredientList from './CookIngredientList';
+import CookIngredientRequest from './CookIngredientRequest';
+import CookMenuList from './CookMenuList';
+
 
 class CookHome extends Component{
   constructor(){
     super();
     this.state = {
-      name: 'Bujar',
-      warning: '2',
-      menuList: ['Pizza', 'Burger', 'Taco', 'Pasta'], // food Name
-      supplyList: ['Tomoatoes','Cucumbers','Salt','Pepper'] //supplies
     }
   }
 
@@ -21,25 +27,15 @@ class CookHome extends Component{
   // 2) once it rendered, do something
 
   // this is a function inherited from component
-  componentWillMount = async () => { // this is a function to do something before the componenet renders
-    // async means that it wont happen instantly so it should wait for a response
+  // componentDidMount = async () => { 
+  //   const {restaurant} = this.props.Auth;
+  //   await firebase.database().ref(`/restaurants/${restaurant}`).on('value', snapshot => {
+  //     if(snapshot.hasChild('menu')){
+  //       this.setState({menuList: Object. })
+  //     }
 
-    // this fetches our database with the path /${restaurantName}/menu. The on keyword is a function 
-    // that READS the database (you have read, write, update). Snapshot is the value returned from query
-    // await firebase.database().ref(`/${restaurantName}/menu`).on('value', snapshot => {
-    //   this.setState({ menuList: snapshot.val() }); // this simply stores the snapshot into our state
-    // })
-
-    // this fetches from firebase inside users. It then converts the snapshot.val() object into an array, and stores it in our state
-    await firebase.database().ref(`/users`).on('value', snapshot => {
-      let menuListArray = Object.entries(snapshot.val());
-      this.setState({menuList: menuListArray});
-      
-      //Must fetch name, warning, and supply
-
-
-    })
-  }
+  //   })
+  // }
 
   //Direct to menu page
   onMenu = () => {
@@ -55,6 +51,7 @@ class CookHome extends Component{
 
   render(){
     return (
+
       <SafeAreaView>
       {/*<Text style={{fontSize:40, textAlign:'center', marginBottom: 15}} > HOME </Text>*/}
       <Text
@@ -133,6 +130,7 @@ class CookHome extends Component{
 }
 }
 
+
 // these are styles
 // This is how it would look like default in every component if you want styling
 const styles = StyleSheet.create({
@@ -156,132 +154,9 @@ button: {
 },
 });
 
-export default CookHome;
+const mapStateToProps = state => {
+  return {Auth: state.Auth};
+}
 
+export default connect(mapStateToProps)(CookHome);
 
-
-// MANAGER
-// payDelivery = (deliveryID, amount) => {
-//   const {nonce, payerId, email, firstName, lastName, phone } = await requestOneTimePayment
-//   (
-//     token,
-//   {
-//     amount: amount, // required
-//     // any PayPal supported currency (in this case USD) 
-//     currency: 'USD',
-//     // any PayPal supported locale 
-//     localeCode: 'en_GB', 
-//     shippingAddressRequired: false,
-//     userAction: 'commit', // display 'Pay Now' on the PayPal review page
-//     // one of 'authorize', 'sale', 'order'. defaults to 'authorize'. 
-//     intent: 'authorize', 
-//   }
-//   );
-  
-// }
-
-// changeCommision = async (percent, userID, employeeType) => {
-//   const {restaurantID} = this.props;
-//   // receives userID and employee type and changes their rate inside firebase database
-//   await firebase.database().ref(`/${restaurantID}/${employeeType}/${userID}/`).child('commision')
-//     .transaction(rate => { // this works for decrease/increase commision too
-//       return rate += percent;
-//     }) 
-// }
-
-// // SALESPERSON
-// pickSupply = async (supplies) => {
-//   const {restaurantID} = this.props;
-//   let maxRating = 0; // assumes best rating is the first element
-//   // loops through the supplies to find best match
-//   for (let i = 1; i<supplies.length; i++){
-//     if (supples[maxRating] < supplies[i]){
-//       maxRating = i;
-//     }
-//   }
-//   // updates the supplies in database
-//   await firebase.database().ref(`/${restaurantID}`).child(supplies)
-//     .update({supplies: supplies[maxRating]})
-// }
-
-// negotiatePrice = async (userID, bidAmount, currentAmount) => {
-//   if ( !(bidAmount >= currentAmount) ){ // only if bid is less than current
-//     await firebase.database().ref(`users/${userID}`).child('offer')
-//       .transaction(current => {
-//         return bidAmount
-//       })
-//   }
-// }
-
-// // DELIVERY
-// shortestRoute = (currentLocation, destination) => {
-//   handleGetDirections = () => {
-//     const data = {
-//        source: {
-//         latitude: currentLocation.latitude,
-//         longitude: currentLocation.longitude
-//       },
-//       destination: {
-//         latitude: destination.latitude,
-//         longitude: destination.longitude
-//       },
-//       params: [
-//         {
-//           key: "travelmode",
-//           value: "driving" // may be "walking", "bicycling" or "transit" as well
-//         },
-//         {
-//           key: "dir_action",
-//           value: "navigate" // this instantly initializes navigation using the given travel mode
-//         }
-//       ]
-//     }
- 
-//     getDirections(data); // function imported from google API
-//   }
-// }
-
-// //similar to negotiatePrice function
-// foodBid = (bidAmount, currentAmount) => {
-//   if ( !(bidAmount >= currentAmount) ){ // only if bid is less than current
-//     await firebase.database().ref(`users/${userID}`).child('offer')
-//       .transaction(current => { // updates new bid offer
-//         return bidAmount
-//       })
-//   }
-// }
-
-
-// negotiatePrice = async (userID, bidAmount, currentAmount) => {
-//   if ( !(bidAmount >= currentAmount) ){ // only if bid is less than current
-//     await firebase.database().ref(`users/${userID}`).child('offer')
-//       .transaction(current => {
-//         return bidAmount
-//       })
-//   }
-// }
-
-// winSupply = async (userID) => {
-//   const {restaurantID} = this.props; // gets restaurant from props
-//   await firebase.database().ref(`restaurants/${restaurantID}`).child('supply').on('value', snapshot => {
-//     await firebase.database().ref(`/users/${userID}`).set({supply: snapshot.val()})
-//   })
-// }
-
-
-// //USER CUSTOMER
-// rateCook = async (cookID, totalRatings) => {
-//   const {rating} = this.state;
-//   await firebase.database().ref(`/users/${salespersonID}`).child('rating')
-//     .transaction( rating2 => {
-//       return (rating2 + rating)/(totalRatings+1)
-//     })
-// }
-
-// rateDelivery = (deliveryID, totalRatings) => {
-//   const {rating} = this.state;
-//   await firebase.database().ref(`/users/${deliveryID}`).child('rating')
-//     .transaction( rating2 => {
-//       return (rating2 + rating)/(totalRatings+1)
-//     })
-// }

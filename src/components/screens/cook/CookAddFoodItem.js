@@ -124,6 +124,7 @@ class CookAddFoodItem extends Component {
               <View style={{width: '33%'}}>
                 <Text style={{color: 'white', textAlign: 'center'}}> </Text>
               </View>
+
             </View>
             {this.state.ingredientList.map(ingredient => {
               return (

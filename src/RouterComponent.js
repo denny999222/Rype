@@ -12,8 +12,12 @@ import CustomerPreviousOrders from './components/screens/customer/CustomerPrevio
 import CustomerDeliveryComplain from './components/screens/customer/CustomerDeliveryComplain';
 import CustomerRateFood from './components/screens/customer/CustomerRateFood';
 import CustomerFoodComplain from './components/screens/customer/CustomerFoodComplain';
+import CustomerProfile from './components/screens/customer/CustomerProfile';
+import RestaurantInfo from './components/screens/customer/RestaurantInfo'
 import ManagerHome from './components/screens/manager/ManagerHome';
+import ManagerRegister from './components/screens/manager/ManagerRegister';
 import DeliveryHome from './components/screens/delivery/DeliveryHome';
+import DeliveryBidList from './components/screens/delivery/DeliveryBidList';
 import DeliveryBid from './components/screens/delivery/DeliveryBid';
 import DeliveryCurrentOrder from './components/screens/delivery/DeliveryCurrentOrder';
 import DeliveryCustomerComplain from './components/screens/delivery/DeliveryCustomerComplain';
@@ -26,6 +30,9 @@ import CookComplain from './components/screens/cook/CookComplain';
 import CookMenuList from './components/screens/cook/CookMenuList';
 import CookAddFoodItem from './components/screens/cook/CookAddFoodItem';
 import SalespersonHome from './components/screens/salesperson/SalespersonHome';
+import SalespersonReorder from './components/screens/salesperson/SalespersonReorder';
+import SalespersonOrder from './components/screens/salesperson/SalespersonOrder';
+import SalespersonFindSupplies from './components/screens/salesperson/SalespersonFindSupplies';
 import {TabIcon} from './components/common/components';
 import ManagerCustomers from './components/screens/manager/ManagerCustomers';
 import ManagerComplaints from './components/screens/manager/ManagerComplaints';
@@ -48,23 +55,54 @@ class RouterComponent extends Component {
                     <Scene key='Login' component={Login} hideNavBar />
                     <Scene key='SignUp' component={SignUp} hideNavBar />
 
-                    <Scene key='customer' hideNavBar>
-                        <Scene key='CustomerHome' component={CustomerHome} hideNavBar />
-                        <Scene key='CustomerOrderReceived' component={CustomerOrderReceived} hideNavBar />
-                        <Scene key='CustomerMenu' component={CustomerMenu} hideNavBar />
-                        <Scene key='CustomerShoppingCart' component={CustomerShoppingCart} hideNavBar />
-                        <Scene key='CustomerPreviousOrders' component={CustomerPreviousOrders} hideNavBar />
-                        <Scene key='CustomerDeliveryComplain' component={CustomerDeliveryComplain} hideNavBar />
-                        <Scene key='CustomerRateFood' component={CustomerRateFood} hideNavBar />
-                        <Scene key='CustomerFoodComplain' component={CustomerFoodComplain} hideNavBar />
-
-
-                        
+                    <Scene key='customer' activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
+                        <Scene 
+                            key='CustomerHome' 
+                            component={CustomerHome} 
+                            hideNavBar 
+                            keyColor='black'
+                            iconName='home'
+                            iconColor='white'
+                            iconSize={24}
+                            icon = {TabIcon}
+                        />
+                        <Scene 
+                            key='CustomerShoppingCart' 
+                            component={CustomerShoppingCart} 
+                            hideNavBar 
+                            keyColor='black'
+                            iconName='shopping-cart'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon}
+                        />
+                        <Scene 
+                            key='CustomerProfile' 
+                            component={CustomerProfile} 
+                            hideNavBar 
+                            keyColor='black'
+                            iconName='user-circle'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon}
+                        />
+                    
                     </Scene>
+                    <Scene key='RestaurantInfo' component={RestaurantInfo} hideNavBar hideTabBar/>
+
+                    <Scene key='CustomerOrderReceived' component={CustomerOrderReceived} hideNavBar hideTabBar/>
+                    <Scene key='CustomerMenu' component={CustomerMenu} hideNavBar hideTabBar/>
+                    <Scene key='CustomerShoppingCart' component={CustomerShoppingCart} hideNavBar hideTabBar/>
+                    <Scene key='CustomerPreviousOrders' component={CustomerPreviousOrders} hideNavBar hideTabBar/>
+                    <Scene key='CustomerDeliveryComplain' component={CustomerDeliveryComplain} hideNavBar hideTabBar/>
+                    <Scene key='CustomerRateFood' component={CustomerRateFood} hideNavBar hideTabBar/>
+                    <Scene key='CustomerFoodComplain' component={CustomerFoodComplain} hideNavBar hideTabBar/>
+                    <Scene key='ManagerRegister' component={ManagerRegister} keyColor='black' hideNavBar/>
+
                     <Scene key='manager' activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
                         <Scene 
-                            key='ManagerHome' 
-                            component={ManagerHome} 
+                            key='ManagerInfo' 
+                            component={ManagerHome}
                             hideNavBar 
                             keyColor='black'
                             iconName='utensils'
@@ -81,6 +119,7 @@ class RouterComponent extends Component {
                             iconColor='white'
                             iconSize={24}
                             icon={TabIcon}
+                            initial={true}
                         />
                         <Scene 
                             key='Orders' 
@@ -93,13 +132,13 @@ class RouterComponent extends Component {
                             icon={TabIcon}
                         />
                     </Scene>
-                    <Scene key='cook' hideNavBar>
-                        <Scene key='CookHome' component={CookHome} hideNavBar />
+                    <Scene key='cook'  initial={true} hideNavBar>
+                        <Scene key='CookHome' component={CookHome}  hideNavBar />
                         <Scene key='CookIngredientList' component={CookIngredientList} hideNavBar />
-                        <Scene key='CookIngredientRequest' component={CookIngredientRequest} hideNavBar />
+                        <Scene key='CookIngredientRequest'  component={CookIngredientRequest} hideNavBar />
                         <Scene key='CookComplain' component={CookComplain} hideNavBar />
                         <Scene key='CookMenuList' component={CookMenuList} hideNavBar />
-                        <Scene key='CookAddFoodItem' component={CookAddFoodItem} hideNavBar />
+                        <Scene key='CookAddFoodItem' component={CookAddFoodItem}  initial={true} hideNavBar />
 
                     </Scene>
                     <Scene key='delivery' hideNavBar>
@@ -107,6 +146,13 @@ class RouterComponent extends Component {
                             key='DeliveryHome' 
                             component={DeliveryHome} 
                             hideNavBar 
+                            
+                        />
+                        <Scene 
+                            key='DeliveryBidList' 
+                            component={DeliveryBidList} 
+                            hideNavBar 
+                            initial={true}
                         />
                         <Scene 
                             key='DeliveryBid' 
@@ -130,7 +176,7 @@ class RouterComponent extends Component {
                         />
                         <Scene 
                             key='DeliveryHistory' 
-                            initial={true} 
+                            
                             component={DeliveryHistory} 
                             hideNavBar 
                         />
@@ -155,11 +201,26 @@ class RouterComponent extends Component {
                             icon={TabIcon}
                         />
                     </Scene>
-                    <Scene key='salesperson' initial={true}  hideNavBar>
+                    <Scene key='salesperson' hideNavBar>
                         <Scene 
                             key='SalespersonHome' 
-                            initial={true} 
                             component={SalespersonHome} 
+                            hideNavBar 
+                            initial={true}
+                        />
+                        <Scene 
+                            key='SalespersonOrder' 
+                            component={SalespersonOrder} 
+                            hideNavBar 
+                        />
+                        <Scene 
+                            key='SalespersonReorder' 
+                            component={SalespersonReorder} 
+                            hideNavBar
+                        />
+                        <Scene 
+                            key='SalespersonFindSupplies' 
+                            component={SalespersonFindSupplies} 
                             hideNavBar 
                         />
                         <Scene 

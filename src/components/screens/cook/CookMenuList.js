@@ -249,6 +249,7 @@ class CookMenuList extends Component {
   }
 }
 
+
 // these are styles
 // This is how it would look like default in every component if you want styling
 const styles = StyleSheet.create({

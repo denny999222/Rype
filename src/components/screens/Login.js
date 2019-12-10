@@ -15,7 +15,7 @@ class Login extends Component{
       this.state = {
           email: '',
           password: '',
-          error:''
+          error:'',
       }
   }
 
@@ -37,7 +37,10 @@ class Login extends Component{
                     Actions.customer();
                     break;
                   case 'manager':
-                    Actions.manager();
+                    if (snapshot.val().restaurant !== undefined)
+                      Actions.manager();
+                    else
+                      Actions.ManagerRegister();
                     break;
                   case 'delivery':
                     Actions.delivery();
