@@ -40,15 +40,15 @@ class SalespersonHome extends Component{
           {/* This is the list of items that the cook currently has on the menu! */}
           <View style={{marginVertical: 10}}>
 
-          <View style={{marginHorizontal: 10, flexDirection: 'row', flexWrap: 'wrap', borderWidth: 1, padding: 7, backgroundColor:'white'}}>
+          <View style={{backgroundColor: 'purple', marginHorizontal: 10, flexDirection: 'row', flexWrap: 'wrap', borderWidth: 1, padding: 7}}>
               <View style={{ textAlign: 'center', width: '25%'}}>
-                  <Text style={{textAlign: 'center', fontSize: 20}}>Supply</Text>
+                  <Text style={{color: 'white', textAlign: 'center', fontSize: 20}}>Supply</Text>
               </View>
               <View style={{ textAlign: 'center', width: '25%'}}>
-                  <Text style={{textAlign: 'center', fontSize: 20}}>Rating</Text>
+                  <Text style={{color: 'white',textAlign: 'center', fontSize: 20}}>Rating</Text>
               </View>
               <View style={{ textAlign: 'center', width: '25%'}}>
-                  <Text style={{textAlign: 'center', fontSize: 20}}>Quantity</Text>
+                  <Text style={{color: 'white',textAlign: 'center', fontSize: 20}}>Quantity</Text>
               </View>
               <View style={{ textAlign: 'center', width: '25%'}}>
 
@@ -91,14 +91,14 @@ class SalespersonHome extends Component{
            {/* This is the list of items that the cook currently has on the menu! */}
            <View style={{marginVertical: 10}}>
 
-            <View style={{marginHorizontal: 10, flexDirection: 'row', flexWrap: 'wrap', borderWidth: 1, padding: 7, backgroundColor:'white'}}>
+            <View style={{marginHorizontal: 10, flexDirection: 'row', flexWrap: 'wrap', borderWidth: 1, padding: 7, backgroundColor:'purple'}}>
                 <View style={{ textAlign: 'center', width: '33%'}}>
-                    <Text style={{textAlign: 'center', fontSize: 20}}>Supply</Text>
+                    <Text style={{textAlign: 'center', fontSize: 20, color:'white'}}>Supply</Text>
                 </View>
                 <View style={{ textAlign: 'center', width: '33%'}}>
-                    <Text style={{textAlign: 'center', fontSize: 20}}>Quantity</Text>
+                    <Text style={{textAlign: 'center', fontSize: 20, color: 'white'}}>Quantity</Text>
                 </View>
-                <View style={{ textAlign: 'center', width: '33%'}}>
+                <View style={{ color: 'white', textAlign: 'center', width: '33%'}}>
 
                 </View>
 
