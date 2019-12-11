@@ -10,6 +10,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import StarRating from 'react-native-star-rating';
 import {addCart} from '../../../actions/CustomerActions';
 import { connect } from 'react-redux';
+import { thisExpression } from '@babel/types';
 
 
 
@@ -38,7 +39,7 @@ class RestaurantInfo extends Component {
     addCart = (item) => {
         let joined = this.state.cart.concat(item);
         this.setState({ cart: joined });
-        this.props.addCart(item);
+        this.props.addCart(item, this.props.restaurantID);
     }
 
     
@@ -56,6 +57,11 @@ class RestaurantInfo extends Component {
               <Text style={{alignSelf:'center', color:'red', fontSize:13, right:0, position:'absolute',}} >${foodPrice}</Text>
             </View>
           )
+    }
+
+    requestApproval = async () => {
+        const {currentUser} = firebase.auth();
+        await firebase.database().ref(`/restaurants/${this.props.restaurantID}/pending`).set({ [currentUser.uid]:true });
     }
 
     render(){
@@ -76,6 +82,13 @@ class RestaurantInfo extends Component {
                     }
                 />
                 <Image source={{uri:photoUrl}} style={{width:'95%', aspectRatio:2, margin:10, alignSelf:'center'}} />
+
+                <Button 
+                    onPress={() => this.requestApproval()} 
+                    style={{backgroundColor:'#188a32', padding:5, color:'white', fontWeight:'bold', alignSelf:'center'}} 
+                > 
+                    Request Approval
+                </Button>
 
                 <View style={{marginHorizontal:10, flexDirection:'row', width:'100%', justifyContent:'space-between'}} >
                     <View>

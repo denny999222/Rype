@@ -1,7 +1,8 @@
-export const addCart = (item) => {
+export const addCart = (item, restaurantID) => {
     return {
         type:'ADD_CART',
-        payload:item
+        payload:item,
+        restaurantID: restaurantID
     }
 }
 

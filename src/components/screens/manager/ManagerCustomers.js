@@ -16,6 +16,7 @@ class ManagerCustomers extends Component{
     super();
     this.state = {
       selected: 'pending',
+      useless:1,
 
       pending: [],
       approved: [],
@@ -25,13 +26,16 @@ class ManagerCustomers extends Component{
 
   componentDidMount = async () => {
     const {restaurantID} = this.props;
-    await firebase.database().ref(`/restaurant/${restaurantID}`).on('value', snapshot => {
-      if (snapshot.hasChild('pendingCustomers'))
-        this.setState({pending: pendingCustomers});
-      if (snapshot.hasChild('approvedCustomers'))
-        this.setState({accepted: acceptedCustomers});
-      if (snapshot.hasChild('declinedCustomers'))
-        this.setState({declined: declinedCustomers});
+    await firebase.database().ref(`/restaurants/${restaurantID}`).on('value', snapshot => {
+      if (snapshot.hasChild('pending')){
+        this.setState({pending: Object.keys(snapshot.val().pending)});
+      }
+      if (snapshot.hasChild('approved')){
+        this.setState({approved: Object.keys(snapshot.val().approved) });
+      }
+      if (snapshot.hasChild('declined')){
+        this.setState({declined: Object.keys(snapshot.val().declined )});
+      }
     })
   }
 
@@ -55,12 +59,11 @@ class ManagerCustomers extends Component{
 
   renderCustomerPages = () => {
     const {selected, pending, approved, declined} = this.state;
-    let test = ['asfasfasfa', 'alsabfsanflanfa', 'pohwoianfnala'];
     switch(selected){
       case 'pending':
         return this.renderCustomers(pending);
       case 'approved':
-        return this.renderCustomers(test);
+        return this.renderCustomers(approved);
       case 'declined':
         return this.renderCustomers(declined);
     }
@@ -88,6 +91,27 @@ class ManagerCustomers extends Component{
     }
   }
 
+  onAcceptPending = async (customer) => {
+    const {restaurantID} = this.props;
+    await firebase.database().ref(`/restaurants/${restaurantID}/pending`).child(`${customer}`).remove();
+    await firebase.database().ref(`/restaurants/${restaurantID}/approved`).set({[customer]: true});
+    this.setState({pending:[]});
+  }
+
+  onDeclinePending = async (customer) => {
+    const {restaurantID} = this.props;
+    await firebase.database().ref(`/restaurants/${restaurantID}/pending`).child(`${customer}`).remove();
+    await firebase.database().ref(`/restaurants/${restaurantID}/declined`).set({[customer]: true});
+    this.setState({pending:[]});
+
+  }
+
+  deleteCustomer = async (customer, type) => {
+    const {restaurantID} = this.props;
+    await firebase.database().ref(`/restaurants/${restaurantID}/${type}`).child(`${customer}`).remove();
+    this.setState({[type]: []});
+  }
+
   renderList = (element) => {
     const {selected} = this.state;
     switch(selected){
@@ -101,13 +125,13 @@ class ManagerCustomers extends Component{
 
               <View style={{width:'30%', justifyContent:'center'}} >
                 <Button 
-                    onPress={() => null} 
+                    onPress={() => this.onAcceptPending(element.item)} 
                     style={{backgroundColor:'#188a32', padding:5, color:'white', alignSelf:'center', fontSize:12, width:'80%'}} 
                 > 
                     Approve
                 </Button>
                 <Button 
-                    onPress={() => null} 
+                    onPress={() => this.onDeclinePending(element.item)} 
                     style={{backgroundColor:'red', padding:5, color:'white', alignSelf:'center', fontSize:12, width:'80%'}} 
                 > 
                     Decline
@@ -122,7 +146,7 @@ class ManagerCustomers extends Component{
                 <Text style={{padding:5,}} >{element.item}</Text>
                 <Text style={{padding:5}} >{element.item}</Text>
               </View>
-              <TouchableOpacity style={{justifyContent:'flex-start', alignItems:'flex-end', margin:5}} >
+              <TouchableOpacity onPress={() => this.deleteCustomer(element.item, 'approved')} style={{justifyContent:'flex-start', alignItems:'flex-end', margin:5}} >
                 <Icon name='times' size={20} color='red' />
               </TouchableOpacity>
             </View>
@@ -134,7 +158,7 @@ class ManagerCustomers extends Component{
                 <Text style={{padding:5,}} >{element.item}</Text>
                 <Text style={{padding:5}} >{element.item}</Text>
               </View>
-              <TouchableOpacity style={{justifyContent:'flex-start', alignItems:'flex-end', margin:5}} >
+              <TouchableOpacity onPress={() => this.deleteCustomer(element.item, 'declined')} style={{justifyContent:'flex-start', alignItems:'flex-end', margin:5}} >
                 <Icon name='times' size={20} color='red' />
               </TouchableOpacity>
             </View>
