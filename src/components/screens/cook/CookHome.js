@@ -158,10 +158,24 @@ class CookHome extends Component{
 // these are styles
 // This is how it would look like default in every component if you want styling
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    backgroundColor: 'white'
-  }
+container: {
+  flex: 1,
+  backgroundColor: 'white',
+},
+button: {
+  borderRadius: 20,
+  overflow: 'hidden',
+  backgroundColor: 'transparent',
+  padding: 10,
+  paddingLeft: 50,
+  paddingRight: 50,
+  color: '#66a82d',
+  fontWeight: 'bold',
+  marginTop: 20,
+  alignSelf: 'center',
+  borderColor: '#66a82d',
+  borderWidth: 1,
+},
 });
 
 const mapStateToProps = state => {
