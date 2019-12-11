@@ -128,7 +128,7 @@ class RouterComponent extends Component {
                             icon={TabIcon}
                         />
                     </Scene>
-                    <Scene key='cook' activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
+                    <Scene key='cook'   activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
                         <Scene 
                             key='CookHome' 
                             component={CookHome} 
@@ -144,6 +144,7 @@ class RouterComponent extends Component {
                             key='CookProfile' 
                             component={CookProfile}  
                             hideNavBar
+                            initial={true}
                             keyColor='black'
                             iconName='user'
                             iconColor='white'

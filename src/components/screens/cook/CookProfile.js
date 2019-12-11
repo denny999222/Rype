@@ -9,7 +9,6 @@ import {SectionList} from '../../common/components/';
 
 
 class CookProfile extends Component {
-    c
 
 
     render(){
