@@ -14,8 +14,20 @@ class ManagerComplaints extends Component{
   constructor(){
     super();
     this.state = {
-        selected: 'orders'
+        selected: 'orders',
+
+        orderList: []
     }
+  }
+
+  componentDidMount = async () => {
+    const {restaurantID} = this.props;
+    const {currentUser} = firebase.auth();
+    await firebase.database().ref(`/restaurants/${restaurantID}`).child('orders').on('value', snapshot => {
+      if (snapshot.exists()){
+        this.setState({orderList: Object.entries(snapshot.val()) })
+      }
+    })
   }
 
   renderBackground = (selected) => {
@@ -37,13 +49,12 @@ class ManagerComplaints extends Component{
   }
 
   renderOrderPages = () => {
-    const {selected} = this.state;
-    let customers = [ [['1917uniqueID919'], ['customer name', 'price']], [['1917uniqueID919'], ['customer name', 'price']], [['1917uniqueID919'], ['customer name', 'price']], [['1917uniqueID919'], ['customer name', 'price']], [['1917uniqueID919'], ['customer name', 'price']], [['1917uniqueID919'], ['customer name', 'price']], [['1917uniqueID919'], ['customer name', 'price']] ];
+    const {selected, orderList} = this.state;
     switch(selected){
       case 'orders':
-        return this.renderCustomers(customers);
+        return this.renderCustomers(orderList);
       case 'complaints':
-        return this.renderCustomers(customers);
+        return this.renderCustomers(orderList);
     }
   }
 
@@ -58,6 +69,10 @@ class ManagerComplaints extends Component{
     )
   }
 
+  approveOrder = () => {
+    
+  }
+
   renderList = (element) => {
     const {selected} = this.state;
     switch(selected){
@@ -65,8 +80,8 @@ class ManagerComplaints extends Component{
           return (
             <View style={{marginBottom: 10, marginHorizontal:10, flexDirection:'row'}} >
               <TouchableOpacity style={{borderWidth:.5, width:'70%'}} >
-                <Text style={{padding:5,}} >{element.item[1][0]}</Text>
-                <Text style={{padding:5}} >{element.item[1][1]}</Text>
+                <Text style={{padding:5,}} >{element.item[0]}</Text>
+                <Text style={{padding:5, color:'red', fontWeight:'bold'}} >${element.item[1].total}</Text>
               </TouchableOpacity>
 
               <View style={{width:'30%', justifyContent:'center'}} >

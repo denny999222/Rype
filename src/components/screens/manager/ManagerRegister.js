@@ -24,7 +24,9 @@ class ManagerRegister extends Component{
       restaurantGrade: '',
       description: '',
       error: '',
-      photoUrl: ''
+      photoUrl: '',
+      lat: '',
+      long: ''
     }
   }
 
@@ -55,9 +57,9 @@ class ManagerRegister extends Component{
     // gets the current user's ID, which in this case is the manager's ID
     const {currentUser} = firebase.auth(); 
     // gets the manager's input and uses it to save onto database
-    const {name, address, phone, restaurantGrade, description, photoUrl} = this.state;
+    const {name, address, phone, restaurantGrade, description, photoUrl, lat, long} = this.state;
     // creates a new restaurant with the given information and pushes it onto database
-    if (name !== "" || address !== "" || phone !== "" || restaurantGrade !== "" || description !== "" || photoUrl !== ""){
+    if (name !== "" || address !== "" || phone !== "" || restaurantGrade !== "" || description !== "" || photoUrl !== "" || lat !== '' || long !== ''){
         let restID = await firebase.database().ref(`/restaurants/`).push({
           name: name,
           address: address,
@@ -67,7 +69,9 @@ class ManagerRegister extends Component{
           rating : 0,
           amountOfRatings: 0,
           manager: currentUser.uid,
-          photo: photoUrl
+          photo: photoUrl,
+          lat: lat,
+          long: long
         }).key;
     
       await firebase.database().ref(`/users/${currentUser.uid}`).update({restaurant: restID});
@@ -101,6 +105,16 @@ class ManagerRegister extends Component{
             label="Address" 
             value={address} 
             onChangeText={(text) => this.onFieldChanged('address', text) }
+          />
+          <TextField
+            label="Latitude" 
+            value={lat} 
+            onChangeText={ (text) => this.onFieldChanged('name', text) }
+          />
+          <TextField
+            label="Longitude" 
+            value={long} 
+            onChangeText={ (text) => this.onFieldChanged('name', text) }
           />
           <TextField
             label="Phone #" 

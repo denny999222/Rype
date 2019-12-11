@@ -220,6 +220,7 @@ class RouterComponent extends Component {
                             key='DeliveryHome' 
                             component={DeliveryHome} 
                             hideNavBar 
+                            initial={true}
                             keyColor='black'
                             iconName='home'
                             iconColor='white'
