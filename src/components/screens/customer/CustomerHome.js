@@ -60,7 +60,7 @@ class CustomerHome extends Component{
   renderRestaurantItem = (element) => {
     const {photoUrl, name} = element.item[1];
     return (
-      <TouchableOpacity onPress={() => Actions.RestaurantInfo({data: element.item[1]})} style={{borderWidth:.4, margin:5}} >
+      <TouchableOpacity onPress={() => Actions.RestaurantInfo({restaurantID: element.item[0], data: element.item[1]})} style={{borderWidth:.4, margin:5}} >
         <Image
             source={{uri: photoUrl}}
             style={{ width:100, height:100,}}

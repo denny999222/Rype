@@ -1,20 +1,23 @@
 import React, {Component} from 'react'; //Knows how to use components (The backend)
 import {Actions} from 'react-native-router-flux'; //Knows how to put stuff on the UI (The front end)
 import Button from 'react-native-button';
-import { StyleSheet, SafeAreaView, Text, View, TouchableOpacity, ScrollView, Image, KeyboardAvoidingView} from 'react-native'; //default components
+import { StyleSheet, SafeAreaView, Text, View, TouchableOpacity, ScrollView, Image, FlatList} from 'react-native'; //default components
 import firebase from 'firebase';
 import {Header} from '../../common/components/';
 import { TextField } from 'react-native-material-textfield';
 import {SectionList} from '../../common/components/';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import StarRating from 'react-native-star-rating';
+import {addCart} from '../../../actions/CustomerActions';
+import { connect } from 'react-redux';
+
 
 
 class RestaurantInfo extends Component {
     constructor(){
         super();
         this.state = {
-
+            cart:[]
         }
     }
 
@@ -32,8 +35,31 @@ class RestaurantInfo extends Component {
         }
       }
 
+    addCart = (item) => {
+        let joined = this.state.cart.concat(item);
+        this.setState({ cart: joined });
+        this.props.addCart(item);
+    }
+
+    
+    renderMenuItem = (element, index) => {
+        const {foodName, foodPrice, ingredients} = element[1];
+        return (
+            <View style={{flexDirection:'row', width:'93%', alignSelf:'center', marginTop:5, marginRight:10}} >
+            <TouchableOpacity style={{marginHorizontal:10, alignSelf:'center'}} onPress={() => this.addCart(element[1])} > 
+                <Icon name='plus' color='#188a32' size={24} />
+            </TouchableOpacity>
+              <View style={{flexDirection:'column'}} >
+                <Text style={{fontSize:20, fontFamily:'Cochin', textAlignVertical:'center',}} >{foodName}</Text>
+                <Text style={{fontSize:13, fontFamily:'Cochin', textAlignVertical:'center', color:'grey', fontStyle:'italic'}} >{ingredients.toString()}</Text>
+              </View>
+              <Text style={{alignSelf:'center', color:'red', fontSize:13, right:0, position:'absolute',}} >${foodPrice}</Text>
+            </View>
+          )
+    }
+
     render(){
-        const {address, amountOfRatings, cook, delivery, description, manager, name, phone, photoUrl, rating, restaurantGrade, salesperson} = this.props.data;
+        const {address, amountOfRatings, description, name, phone, photoUrl, rating, restaurantGrade, menu} = this.props.data;
         return(
             <SafeAreaView style={styles.container} >
                 <Header
@@ -42,6 +68,12 @@ class RestaurantInfo extends Component {
                     containerStyle={{backgroundColor:'#188a32'}}
                     leftButton={<Icon name='arrow-left' size={30} color='white' />} 
                     onPressLeft = {() => Actions.pop()}
+                    rightButton={
+                        <TouchableOpacity style={{flexDirection:'row', alignItems:'center'}} >
+                            <Text style={{color:'white', fontWeight:'bold', fontSize:25}} >{this.props.cartSize}</Text> 
+                            <Icon name='cart-plus' color='white' size={24} />
+                        </TouchableOpacity>
+                    }
                 />
                 <Image source={{uri:photoUrl}} style={{width:'95%', aspectRatio:2, margin:10, alignSelf:'center'}} />
 
@@ -67,8 +99,16 @@ class RestaurantInfo extends Component {
                 <Text style={{fontStyle:'italic', marginLeft:10, color:'grey'}} >{address}</Text>
                 <Text style={{fontStyle:'italic', marginLeft:10, color:'grey'}} >Call us at {phone}</Text>
 
-                
+                <View style={{backgroundColor:'#188a32', width:'60%', alignSelf:'center', marginVertical:20}} >
+                    <Text style={{textAlign:'center', fontWeight:'bold', fontFamily:'Cochin', fontSize:25, color:'white'}} >Menu</Text>
+                </View>
 
+                <FlatList
+                    data={Object.entries(menu)}
+                    renderItem={ ({item,index}) => this.renderMenuItem(item,index) }
+                    keyExtractor={ (element) => element[0]}
+                    containerStyle={{marginBottom:20}}
+                />
             </SafeAreaView>
         );
     }
@@ -84,5 +124,9 @@ const styles = StyleSheet.create({
     }
 })
 
+const mapStateToProps = state => {
+    console.log(state.Customer);
+    return {cartSize: state.Customer.cart.length};
+}
 
-export default RestaurantInfo; 
+export default connect(mapStateToProps, {addCart})(RestaurantInfo); 

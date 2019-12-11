@@ -39,10 +39,7 @@ class CookComplain extends Component {
 
                 />
 
-                <Button>
-                    Submit
-                </Button>
-
+                <Text></Text>
             </SafeAreaView>
         );
     }
