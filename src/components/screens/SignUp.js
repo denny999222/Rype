@@ -43,6 +43,7 @@ class SignUp extends Component{
                         break;
                     case 'customer':
                         Actions.customer();
+                        await firebase.database().ref(`/users/${res.user.uid}`).set({level: 'regular'});
                         break;
                 }    
             }
@@ -87,10 +88,10 @@ class SignUp extends Component{
                 <Text style={{textAlign:'center', marginBottom:10, fontWeight:'bold', fontSize:20}} > Choose Account Type </Text>
                 <View style={{flexDirection:'row', alignSelf:'center'}} >
                     <TouchableOpacity onPress={() => this.setState({accountType:'manager'}) } style={this.onAccountSelected('manager')} >
-                        <Text style={this.onTextColorChange('manager')} >  Manager </Text>
+                        <Text style={this.onTextColorChange('manager')} >Manager</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.setState({accountType:'customer'}) } style={this.onAccountSelected('customer')} >
-                        <Text style={this.onTextColorChange('customer')} >  Customer </Text>
+                        <Text style={this.onTextColorChange('customer')} >Customer</Text>
                     </TouchableOpacity>
                 </View>
             </View>
