@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Actions} from 'react-native-router-flux';
 import Button from 'react-native-button';
-import { StyleSheet, SafeAreaView, Text, View, FlatList} from 'react-native';
+import { StyleSheet, SafeAreaView, Text, View, FlatList,Alert} from 'react-native';
 import firebase from 'firebase';
 import {SectionList, Header} from '../../common/components/';
 import { connect } from 'react-redux';
@@ -31,11 +31,23 @@ class CustomerShoppingCart extends Component {
     )
     }
 
-    order = () => {
-
+    order = async () => {
+        const {currentUser} = firebase.auth();
+        const {restaurantID, cart, totalPrice} = this.props;
+        await firebase.database().ref(`/restaurants/${restaurantID}/approved`).on('value', async snapshot => {
+            if (snapshot.hasChild(`${currentUser.uid}`)){
+                await firebase.database().ref(`/restaurants/${restaurantID}/orders/${currentUser.uid}`).set({foods: cart, total: totalPrice});
+            }
+            else{
+                this.setState({error: 'You have not been approved yet!'});
+            }
+        })
+        Alert.alert('Order Message', 'Ordered Food!');
+        this.props.clearCart();
     }
 
     render(){
+        const {cart, totalPrice} = this.props;
         return(
             <SafeAreaView style={styles.container}>
             <Header 
@@ -50,19 +62,22 @@ class CustomerShoppingCart extends Component {
                     keyExtractor={ (element) => element}
                 />
 
+                <Text style={{fontWeight:'bold', fontSize:24, textAlign:'center'}} >${totalPrice}</Text>
 
-                <View style={{flexDirection:'row', alignSelf:'center', justifyContent:'space-between', width:'50%', marginBottom:20}} >
+                <Text style={{fontWeight:'bold', fontSize:16, textAlign:'center', color:'red'}} >{this.state.error}</Text>
+
+                <View style={{flexDirection:'row', alignSelf:'center', justifyContent:'space-between', width:'50%', marginBottom:20, marginTop:20}} >
                     <Button 
                         onPress={() => this.props.clearCart()} 
                         containerStyle={{borderRadius:5}}
-                        style={{backgroundColor:'#188a32', padding:8, color:'white', fontWeight:'bold', marginTop:30, alignSelf:'center'}} 
+                        style={{backgroundColor:'#188a32', padding:8, color:'white', fontWeight:'bold', alignSelf:'center'}} 
                     > 
                         CLEAR
                     </Button>
                     <Button 
-                        onPress={() => this.onRegister()} 
+                        onPress={() => this.order()} 
                         containerStyle={{borderRadius:5}}
-                        style={{backgroundColor:'#188a32', padding:8, color:'white', fontWeight:'bold', marginTop:30, alignSelf:'center'}} 
+                        style={{backgroundColor:'#188a32', padding:8, color:'white', fontWeight:'bold', alignSelf:'center'}} 
                     > 
                         ORDER
                     </Button>
@@ -87,8 +102,15 @@ const styles = StyleSheet.create({
   });
 
 const mapStateToProps = state => {
+    let total = 0;
+    for (let i = 0; i<state.Customer.cart.length; i++){
+        total +=  parseInt(state.Customer.cart[i].foodPrice);
+    }
+
     return {
-        cart: state.Customer.cart
+        cart: state.Customer.cart,
+        restaurantID: state.Customer.restaurantID,
+        totalPrice: total
     }
 }
 

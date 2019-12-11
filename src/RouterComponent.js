@@ -25,6 +25,11 @@ import DeliveryCompleteOrder from './components/screens/delivery/DeliveryComplet
 import DeliveryHistory from './components/screens/delivery/DeliveryHistory';
 import CookHome from './components/screens/cook/CookHome';
 import CookProfile from './components/screens/cook/CookProfile';
+import CookAddFoodItem from './components/screens/cook/CookAddFoodItem';
+import CookComplain from './components/screens/cook/CookComplain';
+import CookIngredientList from './components/screens/cook/CookIngredientList';
+import CookMenuList from './components/screens/cook/CookMenuList';
+
 import SalespersonHome from './components/screens/salesperson/SalespersonHome';
 import SalespersonReorder from './components/screens/salesperson/SalespersonReorder';
 import SalespersonOrder from './components/screens/salesperson/SalespersonOrder';
@@ -82,17 +87,35 @@ class RouterComponent extends Component {
                             iconSize={24}
                             icon={TabIcon}
                         />
+                        <Scene 
+                            key='CustomerDeliveryComplain' 
+                            component={CustomerDeliveryComplain} 
+                            hideNavBar 
+                            keyColor='black'
+                            iconName='exclamation-circle'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon}
+                        />
+                        <Scene 
+                            key='CustomerFoodComplain' 
+                            component={CustomerFoodComplain} 
+                            hideNavBar 
+                            keyColor='black'
+                            iconName='exclamation-triangle'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon}
+                        />
+                        
                     
                     </Scene>
                     <Scene key='RestaurantInfo' component={RestaurantInfo} hideNavBar hideTabBar/>
 
                     <Scene key='CustomerOrderReceived' component={CustomerOrderReceived} hideNavBar hideTabBar/>
                     <Scene key='CustomerMenu' component={CustomerMenu} hideNavBar hideTabBar/>
-                    <Scene key='CustomerShoppingCart' component={CustomerShoppingCart} hideNavBar hideTabBar/>
                     <Scene key='CustomerPreviousOrders' component={CustomerPreviousOrders} hideNavBar hideTabBar/>
-                    <Scene key='CustomerDeliveryComplain' component={CustomerDeliveryComplain} hideNavBar hideTabBar/>
                     <Scene key='CustomerRateFood' component={CustomerRateFood} hideNavBar hideTabBar/>
-                    <Scene key='CustomerFoodComplain' component={CustomerFoodComplain} hideNavBar hideTabBar/>
                     <Scene key='ManagerRegister' component={ManagerRegister} keyColor='black' hideNavBar/>
 
                     <Scene key='manager' activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
@@ -151,99 +174,121 @@ class RouterComponent extends Component {
                             iconSize={24}
                             icon={TabIcon} 
                         />
+                        <Scene 
+                            key='CookAddFoodItem' 
+                            component={CookAddFoodItem}  
+                            hideNavBar
+                            keyColor='black'
+                            iconName='plus'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon} 
+                        />
+                        <Scene 
+                            key='CookIngredientList' 
+                            component={CookIngredientList}  
+                            hideNavBar
+                            keyColor='black'
+                            iconName='mortar-pestle'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon} 
+                        />
+                        <Scene 
+                            key='CookMenuList' 
+                            component={CookMenuList}  
+                            hideNavBar
+                            keyColor='black'
+                            iconName='scroll'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon} 
+                        />
+                        <Scene 
+                            key='CookComplain' 
+                            component={CookComplain}  
+                            hideNavBar
+                            keyColor='black'
+                            iconName='exclamation-circle'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon} 
+                        />
 
                     </Scene>
-                    <Scene key='delivery' hideNavBar>
+                    <Scene key='delivery' activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
                         <Scene 
                             key='DeliveryHome' 
                             component={DeliveryHome} 
                             hideNavBar 
-                            
+                            keyColor='black'
+                            iconName='home'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon} 
                         />
                         <Scene 
                             key='DeliveryBidList' 
                             component={DeliveryBidList} 
                             hideNavBar 
-                            initial={true}
-                        />
-                        <Scene 
-                            key='DeliveryBid' 
-                            component={DeliveryBid} 
-                            hideNavBar 
+                            keyColor='black'
+                            iconName='dice'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon} 
                         />
                         <Scene 
                             key='DeliveryCurrentOrder' 
                             component={DeliveryCurrentOrder} 
                             hideNavBar 
-                        />
-                        <Scene 
-                            key='DeliveryCustomerComplain'
-                            component={DeliveryCustomerComplain} 
-                            hideNavBar 
-                        />
-                        <Scene 
-                            key='DeliveryCompleteOrder'
-                            component={DeliveryCompleteOrder} 
-                            hideNavBar 
-                        />
-                        <Scene 
-                            key='DeliveryHistory' 
-                            
-                            component={DeliveryHistory} 
-                            hideNavBar 
-                        />
-                        <Scene 
-                            key='Bidding' 
-                            component={DeliveryHome} 
-                            hideNavBar 
-                            keyColor='black'
-                            iconName='file-invoice-dollar'
-                            iconColor='white'
-                            iconSize={24}
-                            icon={TabIcon}
-                        />
-                        <Scene 
-                            key='Orders' 
-                            component={DeliveryHome} 
-                            hideNavBar 
                             keyColor='black'
                             iconName='receipt'
                             iconColor='white'
                             iconSize={24}
-                            icon={TabIcon}
+                            icon={TabIcon} 
+                        />
+                        <Scene 
+                            key='DeliveryCustomerComplain'
+                            component={DeliveryCustomerComplain} 
+                            hideNavBar
+                            keyColor='black'
+                            iconName='exclamation-circle'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon}  
                         />
                     </Scene>
-                    <Scene key='salesperson' hideNavBar>
+                    <Scene key='salesperson' activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
                         <Scene 
                             key='SalespersonHome' 
                             component={SalespersonHome} 
                             hideNavBar 
                             initial={true}
+                            keyColor='black'
+                            iconName='home'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon}  
                         />
                         <Scene 
                             key='SalespersonOrder' 
                             component={SalespersonOrder} 
                             hideNavBar 
-                        />
-                        <Scene 
-                            key='SalespersonReorder' 
-                            component={SalespersonReorder} 
-                            hideNavBar
+                            keyColor='black'
+                            iconName='scroll'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon}  
                         />
                         <Scene 
                             key='SalespersonFindSupplies' 
                             component={SalespersonFindSupplies} 
                             hideNavBar 
-                        />
-                        <Scene 
-                            key='Bidding' 
-                            component={SalespersonHome} 
-                            hideNavBar 
                             keyColor='black'
-                            iconName='file-invoice-dollar'
+                            iconName='utensils'
                             iconColor='white'
                             iconSize={24}
-                            icon={TabIcon}
+                            icon={TabIcon}  
                         />
                         <Scene 
                             key='Orders' 
