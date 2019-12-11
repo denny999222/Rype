@@ -35,8 +35,8 @@ class DeliveryCustomerComplain extends Component {
 
     render(){
         return(
-            <SafeAreaView>
-                <Text>Explain Issue</Text>
+            <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+                <Text>Customer Complaint</Text>
                 <TextField
                     label="Complaint"
                     value ={this.state.complaint}
@@ -46,7 +46,7 @@ class DeliveryCustomerComplain extends Component {
 
 
                 <Button 
-                    onPress={() => this.onSumbit()}>
+                    onPress={() => Actions.DeliveryHome()}>
                     Submit
                 </Button>
 
