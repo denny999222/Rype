@@ -91,16 +91,6 @@ class DeliveryHistory extends Component {
 
 
 
-                <Button 
-                    onPress={() => this.goBack()}  
-                    containerStyle={{bottom:0}}
-                    style={{backgroundColor:'#66a82d', padding:10, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} 
-                > 
-                Go Back
-                </Button>
-
-
-
 
 
 

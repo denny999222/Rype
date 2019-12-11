@@ -113,7 +113,7 @@ class CookIngredientRequest extends Component {
           </View>
 
           <Button
-            onPress={() => this.onSubmit()}
+            onPress={() => Actions.CookHome()}
             containerStyle={{bottom: 0}}
             style={{
               backgroundColor: '#6f2da8',

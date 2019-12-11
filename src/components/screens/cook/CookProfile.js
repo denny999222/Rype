@@ -9,12 +9,20 @@ import {SectionList} from '../../common/components/';
 
 
 class CookProfile extends Component {
-    c
-
+  constructor(){
+    super();
+    this.state = {
+      name: 'Cook',
+      salary: '15',
+      warning: '2',
+      menuList: ['Pizza', 'Burger', 'Taco', 'Pasta'], // food Name
+      supplyList: ['Tomoatoes','Cucumbers','Salt','Pepper'] //supplies
+    }
+  }
 
     render(){
         return(
-            <SafeAreaView style={{flex:1}} >
+            <SafeAreaView style={{flex:1, backgroundColor: 'white'}} >
                 <Header
                     name='Profile'
                     contentStyle={{fontSize:30, color:'white', fontWeight:'bold', fontFamily:'Cochin'}} 
@@ -22,6 +30,12 @@ class CookProfile extends Component {
                     rightButton={<View/>} 
                     onRightPress = {() => null}
                 />
+                {/*<Text style={{fontSize:40, textAlign:'center', marginBottom: 15}} > HOME </Text>*/}
+                <Text style={{fontSize:40, textAlign:'center', marginBottom: 15}}>Welcome, {this.state.name} </Text>
+                <Text style={{fontSize:20, marginBottom: 15}}>Salary: ${this.state.salary}</Text>
+                <Text style={{fontSize:20, marginBottom: 15}}>Number of warnings: {this.state.warning}</Text>
+
+                
             </SafeAreaView>
         );
     }

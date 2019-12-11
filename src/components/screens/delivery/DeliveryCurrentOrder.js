@@ -1,10 +1,19 @@
-import React, {Component} from 'react'; //Knows how to use components (The backend)
-import {Actions} from 'react-native-router-flux'; //Knows how to put stuff on the UI (The front end)
+import React, {Component} from 'react';
+import {Actions} from 'react-native-router-flux';
 import Button from 'react-native-button';
-import { StyleSheet, SafeAreaView, Text, View, TouchableOpacity, ScrollView, Image, KeyboardAvoidingView} from 'react-native'; //default components
+import {
+  StyleSheet,
+  SafeAreaView,
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  Image,
+  KeyboardAvoidingView,
+} from 'react-native'; //default components
 import firebase from 'firebase';
 
-import { TextField } from 'react-native-material-textfield';
+import {TextField} from 'react-native-material-textfield';
 import {SectionList} from '../../common/components/';
 
 
@@ -24,17 +33,47 @@ class DeliveryCurrentOrder extends Component {
             //This gets passed into the google API, along with the current delivery person's location.
         }
     }
+//Send the ingredient to the database./ Add new ingredient record
+onSubmit = () => {};
 
-    //If user changes the text in input, always store current in state.
-    onFieldChanged = (state, text) => {
-        //this is a function inherited from Component. It simply modifies one of the properties inside state
-        this.setState({[state]: text}); 
-    }
+//If user changes the text in input, always store current in state.
+onFieldChanged = (state, text) => {
+  //this is a function inherited from Component. It simply modifies one of the properties inside state
+  this.setState({[state]: text});
+};
 
-    //Send the tip/rating to the database
-    onSubmit = () => {
+onGradeSelected = selectedType => {
+  // this makes the selected letter grade green when selected
+  if (selectedType === this.state.food_category) {
+    return {
+      backgroundColor: '#66a82d',
+      borderWidth: 0.5,
+      justifyContent: 'center',
+    };
+  } else {
+    return {
+      backgroundColor: 'white',
+      borderWidth: 0.5,
+      justifyContent: 'center',
+    };
+  }
+};
 
-    }
+onTextColorChange = selectedType => {
+  if (selectedType === this.state.food_category) {
+    return {
+      color: 'white',
+      paddingBottom: 5,
+      paddingTop: 5,
+      fontWeight: 'bold',
+    };
+  } else {
+    return {color: 'black', paddingBottom: 5, paddingTop: 5};
+  }
+};
+
+//Add the ingredient to the food
+onAdd = () => {};
 
 
 
@@ -51,14 +90,38 @@ class DeliveryCurrentOrder extends Component {
                 <Text style={{fontSize: 25, textAlign: 'center'}}>Estimated Time Remaining:</Text>
                 <Text style={{fontSize: 25, textAlign: 'center'}}>{this.state.estimatedTimeArrival}</Text>
 
-                {/** We will also need some logic to handle that the user does not input anything > than the current bid/ that it gets rejected */
-                /** We can use a Queue to process the most recent bid */}
+    
+                <View style={{flexDirection: 'row', alignSelf: 'center'}}>
+            <Text style={{fontSize: 18}}>Route: </Text>
+
+            <TouchableOpacity
+              onPress={() => this.setState({food_category: 'Lunch'})}
+              style={this.onGradeSelected('Lunch')}>
+              <Text style={this.onTextColorChange('Lunch')}> Good </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.setState({food_category: 'Dinner'})}
+              style={this.onGradeSelected('Dinner')}>
+              <Text style={this.onTextColorChange('Dinner')}> Busy </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.setState({food_category: 'Dessert'})}
+              style={this.onGradeSelected('Dessert')}>
+              <Text style={this.onTextColorChange('Dessert')}> Closed </Text>
+            </TouchableOpacity>
+          
+          </View>
+
+
+
+
+
 
 
                 <Button
-                    onPress={() => this.onSubmit()}  
+                    onPress={() => Actions.DeliveryHome()}  
                     containerStyle={{bottom:0}}
-                    style={{backgroundColor:'#66a82d', padding:10, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} >
+                    style={{backgroundColor:'purple', padding:10, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} >
                     Mark as Complete 
                 </Button>
                 {/** Once marked as complete, it redirects us to rating the delivery person */}

@@ -123,7 +123,7 @@ class CookHome extends Component{
           <Text style={{fontSize:24, fontFamily:'Cochin', textAlignVertical:'center',}} >{foodName}</Text>
           <Text style={{fontSize:17, fontFamily:'Cochin', textAlignVertical:'center', color:'grey', fontStyle:'italic'}} >{ingredients.toString()}</Text>
         </View>
-          <Text style={{alignSelf:'center', color:'red', fontSize:18, right:0, position:'absolute',}} >${foodPrice}</Text>
+          <Text style={{alignSelf:'center', color:'purple', fontSize:18, right:0, position:'absolute',}} >${foodPrice}</Text>
       </View>
     )
   } 

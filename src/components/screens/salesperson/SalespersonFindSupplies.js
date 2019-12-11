@@ -28,15 +28,15 @@ class SalespersonFindSupplies extends Component{
   render(){
     return (
       <SafeAreaView style={styles.container} >
-          <Text style={{fontSize:40, textAlign: 'center'}} >Welcome {this.state.salespersonName} </Text>
+          <Text style={{fontSize:40, textAlign: 'center'}} >Find Suplies </Text>
           <Text style={{marginVertical: 10}}></Text>
 
           {/* This is the list of items that the cook currently has on the menu! */}
           <View style={{marginVertical: 10}}>
 
-          <View style={{marginHorizontal: 10, flexDirection: 'row', flexWrap: 'wrap', borderWidth: 1, padding: 7, backgroundColor:'white'}}>
+          <View style={{marginHorizontal: 10, flexDirection: 'row', flexWrap: 'wrap', borderWidth: 1, padding: 7, backgroundColor:'purple'}}>
               <View style={{ textAlign: 'center', width: '75%'}}>
-                  <Text style={{textAlign: 'center', fontSize: 20}}>Supply</Text>
+                  <Text style={{textAlign: 'center', fontSize: 20, color:'white'}}>Supply</Text>
               </View>
  
               <View style={{ textAlign: 'center', width: '25%'}}>
@@ -87,6 +87,7 @@ class SalespersonFindSupplies extends Component{
 const styles = StyleSheet.create({
   container:{
     flex: 1,
+    backgroundColor: 'white'
   }
 });
 
