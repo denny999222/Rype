@@ -29,6 +29,7 @@ import CookAddFoodItem from './components/screens/cook/CookAddFoodItem';
 import CookComplain from './components/screens/cook/CookComplain';
 import CookIngredientList from './components/screens/cook/CookIngredientList';
 import CookMenuList from './components/screens/cook/CookMenuList';
+import CookIngredientRequest from './components/screens/cook/CookIngredientRequest';
 
 import SalespersonHome from './components/screens/salesperson/SalespersonHome';
 import SalespersonReorder from './components/screens/salesperson/SalespersonReorder';
@@ -52,7 +53,7 @@ class RouterComponent extends Component {
         return (
             <Router>
                 <Scene key='root' >  
-                    <Scene key='RootScreen' initial={true} component={RootScreen} hideNavBar />
+                    <Scene key='RootScreen' component={RootScreen} hideNavBar />
                     <Scene key='Login' component={Login} hideNavBar />
                     <Scene key='SignUp' component={SignUp} hideNavBar />
 
@@ -151,11 +152,11 @@ class RouterComponent extends Component {
                             icon={TabIcon}
                         />
                     </Scene>
-                    <Scene key='cook'   activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
+                    <Scene key='cook' initial={true}   activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
                         <Scene 
                             key='CookHome' 
                             component={CookHome} 
-                            inital={true} 
+                            
                             hideNavBar 
                             keyColor='black'
                             iconName='scroll'
@@ -163,27 +164,7 @@ class RouterComponent extends Component {
                             iconSize={24}
                             icon={TabIcon}
                         />
-                        <Scene 
-                            key='CookProfile' 
-                            component={CookProfile}  
-                            hideNavBar
-                            initial={true}
-                            keyColor='black'
-                            iconName='user'
-                            iconColor='white'
-                            iconSize={24}
-                            icon={TabIcon} 
-                        />
-                        <Scene 
-                            key='CookAddFoodItem' 
-                            component={CookAddFoodItem}  
-                            hideNavBar
-                            keyColor='black'
-                            iconName='plus'
-                            iconColor='white'
-                            iconSize={24}
-                            icon={TabIcon} 
-                        />
+                        
                         <Scene 
                             key='CookIngredientList' 
                             component={CookIngredientList}  
@@ -195,11 +176,21 @@ class RouterComponent extends Component {
                             icon={TabIcon} 
                         />
                         <Scene 
+                            key='CookIngredientRequest' 
+                            component={CookIngredientRequest}  
+                            hideNavBar
+                            keyColor='black'
+                            iconName='plus'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon} 
+                        />
+                        <Scene 
                             key='CookMenuList' 
                             component={CookMenuList}  
                             hideNavBar
                             keyColor='black'
-                            iconName='scroll'
+                            iconName='star'
                             iconColor='white'
                             iconSize={24}
                             icon={TabIcon} 
@@ -214,7 +205,17 @@ class RouterComponent extends Component {
                             iconSize={24}
                             icon={TabIcon} 
                         />
-
+                        <Scene 
+                            key='CookProfile' 
+                            component={CookProfile}  
+                            hideNavBar
+                            initial={true}
+                            keyColor='black'
+                            iconName='user'
+                            iconColor='white'
+                            iconSize={24}
+                            icon={TabIcon} 
+                        />
                     </Scene>
                     <Scene key='delivery' activeBackgroundColor='#0b4d1a' showLabel={false} hideNavBar tabs={true} hideNavBar tabBarStyle={{backgroundColor: '#188a32' }}>
                         <Scene 

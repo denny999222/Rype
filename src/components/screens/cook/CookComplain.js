@@ -36,7 +36,7 @@ class CookComplain extends Component {
 
   render() {
     return (
-      <SafeAreaView>
+      <SafeAreaView style= {{backgroundColor: 'white', flex: 1}}>
         <Text style={{fontSize: 30, textAlign: 'center'}}>Explain Issue</Text>
         <TextField
           label="Complaint"
@@ -46,7 +46,14 @@ class CookComplain extends Component {
           style={{borderColor: 'transparent'}}
         />
 
-        <Button onPress={() => this.onSumbit()}>Submit</Button>
+
+        <Button 
+                        onPress={() => Actions.CookHome()} 
+                        containerStyle={{bottom:0}}
+                        style={{borderRadius:20, overflow:'hidden', backgroundColor:'purple', padding:10, paddingLeft: 50, paddingRight: 50, color:'white', fontWeight:'bold', marginTop:20, alignSelf:'center'}} 
+                    > 
+                        Submit
+                    </Button>
       </SafeAreaView>
     );
   }
